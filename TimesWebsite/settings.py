@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "magazines.apps.MagazinesConfig"
 ]
 
 MIDDLEWARE = [
@@ -54,7 +55,7 @@ ROOT_URLCONF = 'TimesWebsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'books/../templates']
+        'DIRS': [BASE_DIR / 'magazines/../templates']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
