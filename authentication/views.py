@@ -1,9 +1,9 @@
 from django.shortcuts import render
 
 
-def home(request):
+def login(request):
     pass
 
 
-def magazines(request):
+def logout(request):
     pass
