@@ -1,10 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "nav_bar.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block header %}
+    <link href="../../static/content/user_lib.css" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+<div>
+      <div class="top-right-border">
+        <button class = "searchBTN"><img src="../../media/images/buttonex.svg"></button>
+      </div>
+      <!--
+      <div class="c_library-frame">
+        <div class="c_library-text01">
+          <p class="c_library-text01">My Library</p>
+      -->
+      <div class = 'center-container'>
+        <div class="button-container">
+          <button class = 'btn1'>Magazines</button>
+          <button class = 'btn2'><b>My Library</b></button>
+          <button class = 'btn3'>Bookmarks</button>
+        </div>
+      </div>
 
-</body>
-</html>
+      <div class="button-container" id="buttonContainer">
+      </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript">
+        const numberOfButtons = 8;
+        // container for description for each button
+        const description = [];
+        for (let i=1;i <= numberOfButtons;i++)
+          description.push("This is magazine" + i);
+
+        // Container for buttons
+        const buttonContainer = document.getElementById('buttonContainer');
+
+        // Generate buttons
+        for (let i= 1; i <= numberOfButtons; i++) {
+          const button = document.createElement('button');
+          button.className = 'btn';
+          button.innerHTML = `<img src="../../media/images/example1.jpg" alt="Image"> <span class="description">${description[i-1]}</span>`;
+          buttonContainer.appendChild(button);
+        }
+    </script>
+{% endblock %}

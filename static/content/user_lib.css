@@ -1,0 +1,142 @@
+.c_library-frame {
+  width: 100%;
+  overflow: hidden;
+  max-width: 1080px;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #fff;
+}
+
+.c_library-text01 {
+  color: #000;
+  font-size: 5vw;
+  font-style: normal;
+  font-family: "Outfit",sans-serif;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* Align buttons to the left */
+}
+
+.top-right-border {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px; /* Adjust width as needed */
+  height: 50px; /* Adjust height as needed */
+}
+
+/*     buttons at the top        */
+.searchBTN{
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0 10px; /* Add margin between buttons */
+}
+.searchBTN img{
+  width: 100%;
+}
+.searchBTN:hover {
+  background-color: #E5E4E4;
+}
+
+  /* Adjust positioning for Button 1 */
+.btn1 {
+  font-size: 3vw;
+  left: 5%;
+  top: 10%;
+  margin: 2px;
+}
+
+/* Adjust positioning for Button 2 */
+.btn2 {
+  font-size: 3vw;
+  left: 40%;
+  top: 20%;
+  margin: 2px;
+}
+
+/* Adjust positioning for Button 3 */
+.btn3 {
+  font-size: 3vw;
+  left: 75%;
+  top: 30%;
+  margin: 2px;
+}
+
+
+/*     button with image (magazine button       */
+.btn {
+  background-color: #9D9D9D;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  margin: 2%; /* Add some margin between buttons */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; /* Ensure proper positioning of the image */
+  box-shadow: 10px 10px 2px 1px #E5E4E4;
+  width: calc(33.33% - 4%);
+}
+
+.btn .description {
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  margin-top: 2px;
+  display: block;
+  border: none;
+  border-top: 5px solid white;
+}
+
+/* On hover, change background color */
+.btn:hover {
+  background-color: #DDDDDD;
+}
+
+/* Style for the image */
+.btn img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0 ;
+}
+
+/* Style for the text */
+.btn span {
+  display: block;
+  padding: 20px;
+  border: 5px solid white;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+
+@media screen and (max-width: 900px) {
+  .btn {
+    width: calc(50% - 4%); /* 2 buttons per row for medium screens */
+  }
+}
+
+/* Media query for small screens */
+@media screen and (max-width: 600px) {
+  .btn {
+    width: calc(100% - 4%); /* 1 button per row for small screens */
+  }
+}
