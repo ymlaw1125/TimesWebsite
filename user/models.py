@@ -1,8 +1,10 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
 # Create your models here.
-class UserLib(models.Model):
-    user_id = models.IntegerField()
-    saved_magazines = models.JSONField()
-    saved_count = models.IntegerField()
+class CustomUser(AbstractUser):
+    favorites = models.JSONField(default=dict)
+
+    def __str__(self):
+        return self.username
