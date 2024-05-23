@@ -6,7 +6,7 @@
 {% block content %}
 <div>
       <div class="top-right-border">
-        <button class = "searchBTN"><img src="../../media/images/buttonex.svg"></button>
+        <button class = "searchBTN"><img src="../../static/images/buttonex.svg"></button>
       </div>
       <!--
       <div class="c_library-frame">
@@ -41,6 +41,9 @@
           const button = document.createElement('button');
           button.className = 'general_btn';
           button.innerHTML = `<img src="../../media/images/example1.jpg" alt="Image"> <span class="description">${description[i-1]}</span>`;
+          button.className = 'btn';
+          button.innerHTML = `<img src="../static/images/example1.jpg" alt="Image"> <span
+          class="description">${description[i-1]}</span>`;
           buttonContainer.appendChild(button);
         }
     </script>
