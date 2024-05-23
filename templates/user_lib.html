@@ -40,9 +40,7 @@
         for (let i= 1; i <= numberOfButtons; i++) {
           const button = document.createElement('button');
           button.className = 'general_btn';
-          button.innerHTML = `<img src="../../media/images/example1.jpg" alt="Image"> <span class="description">${description[i-1]}</span>`;
-          button.className = 'btn';
-          button.innerHTML = `<img src="../static/images/example1.jpg" alt="Image"> <span class="description">${description[i-1]}</span>`;
+          button.innerHTML = `<img src="../../static/images/example1.jpg" alt="Image"> <span class="description">${description[i-1]}</span>`;
           buttonContainer.appendChild(button);
         }
     </script>

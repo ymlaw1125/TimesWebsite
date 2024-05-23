@@ -12,6 +12,15 @@ def library(request):
         }
     )
 
+def click_magazines(request):
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'click_magazine.html',
+        {
+            "title": "Magazine"
+        }
+    )
 
 def login(request):
     pass
