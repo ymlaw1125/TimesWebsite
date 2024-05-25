@@ -13,18 +13,15 @@ def library(request):
     )
 
 
-def click_magazines(request):
+def login(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'click_magazine.html',
+        'login.html',
         {
-            "title": "Magazine"
+            "title": "Log In"
         }
     )
-
-def login(request):
-    pass
 
 
 def logout(request):
