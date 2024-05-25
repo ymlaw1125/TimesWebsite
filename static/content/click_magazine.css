@@ -53,14 +53,6 @@
   background-color: grey;
 }
 
-/*-------------------------------------*/
-.container1 {
-  position: relative;
-  width: 100%; /* Set the width of the container */
-  height: 100%; /* Set the height of the container */
-  border: none;
-}
-
 /*--------------------------------------*/
 
 .image_container{

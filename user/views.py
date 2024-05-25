@@ -12,6 +12,7 @@ def library(request):
         }
     )
 
+
 def click_magazines(request):
     assert isinstance(request, HttpRequest)
     return render(

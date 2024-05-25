@@ -1,10 +1,140 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "nav_bar.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block header %}
+    <link href="../../static/content/home.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/e3f866b32d.js" crossorigin="anonymous"></script>
 
-</body>
-</html>
+{% endblock %}c
+{% block content %}
+<div class="main">
+    <div class="container1">
+        <div class="banner">
+            <a href="#"><img src="../../static/images/home_banner.jpg" alt="Banner Image"></a>
+        </div>
+        <div class = "heading">
+            <h2>Recent Issues</h2>
+        </div>
+        <div class = "issues">
+            <div class = "issue">
+                <a href="#"><img src="../../static/images/home_v105_3.png" alt="Magazine Issue"></a>
+                <h3>2024 Jan Feb</h3>
+                <p>January 2, 2024</p>
+            </div>
+            <div class = "issue">
+                <a href="#"><img src="../../static/images/home_v101_8.png" alt="Magazine Issue"></a>
+                <h3>2024 Jan Feb</h3>
+                <p>January 2, 2024</p>
+            </div>
+            <div class = "issue">
+                <a href="#"><img src="../../static/images/home_v101_7.png" alt="Magazine Issue"></a>
+                <h3>2024 Jan Feb</h3>
+                <p>January 2, 2024</p>
+            </div>
+        </div>
+    </div>
+    <div class = "container2">
+        <div class = "heading">
+            <h2>YOU SHOULD KNOW</h2>
+        </div>
+        <div class = "articles">
+            <div class = "article">
+                <a href="#"><img src="../../static/images/home_awards.webp"></a>
+                <div class = "content">
+                    <h3>Activism</h3>
+                    <h4>Jane Fonda Champions Climate Action for Every Generation</h4>
+                    <p>Stephanie Zachrek</p>
+                </div>
+            </div>
+            <div class = "article">
+                <a href="#"><img src="../../static/images/home_awards.webp"></a>
+                <div class = "content">
+                    <h3>Activism</h3>
+                    <h4>Jane Fonda Champions Climate Action for Every Generation</h4>
+                    <p>Stephanie Zachrek</p>
+                </div>
+            </div>
+            <div class = "article">
+                <a href="#"><img src="../../static/images/home_awards.webp"></a>
+                <div class = "content">
+                    <h3>Activism</h3>
+                    <h4>Jane Fonda Champions Climate Action for Every Generation</h4>
+                    <p>Stephanie Zachrek</p>
+                </div>
+            </div>
+            <div class = "article">
+                <a href="#"><img src="../../static/images/home_awards.webp"></a>
+                <div class = "content">
+                    <h3>Activism</h3>
+                    <h4>Jane Fonda Champions Climate Action for Every Generation</h4>
+                    <p>Stephanie Zachrek</p>
+                </div>
+            </div>
+            <div class = "article">
+                <a href="#"><img src="../../static/images/home_awards.webp"></a>
+                <div class = "content">
+                    <h3>Activism</h3>
+                    <h4>Jane Fonda Champions Climate Action for Every Generation</h4>
+                    <p>Stephanie Zachrek</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class = "footerContainer">
+        <div class="name">
+            <h1>TIME</h1>
+        </div>
+        <div class="links">
+            <ul>
+                <li>
+                    <a href = "#"><i class="fab fa-facebook"></i></a>
+                </li>
+                <li>
+                    <a href = "#"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li>
+                    <a href = "#"><i class="fab fa-instagram"></i></a>
+                </li>
+                <li>
+                    <a href = "#"><i class="fab fa-youtube"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="line"></div>
+        <div class="footerNav">
+            <div class="footer-col">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Entertainment</a></li>
+                    <li><a href="#">TIME Edge</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <ul>
+                    <li><a href="#">Press Room</a></li>
+                    <li><a href="#">TIME Studios</a></li>
+                    <li><a href="#">U.S. & Canada Customer Care</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <ul>
+                    <li><a href="#">U.S.</a></li>
+                    <li><a href="#">Ideas</a></li>
+                    <li><a href="#">Video</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <ul>
+                    <li><a href="#">Politics</a></li>
+                    <li><a href="#">Science</a></li>
+                    <li><a href="#">Masthead</a></li>
+
+                </ul>
+            </div>
+        </div>
+</div>
+
+{% endblock %}
