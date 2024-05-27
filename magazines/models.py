@@ -9,3 +9,6 @@ class Magazine(models.Model):
     genre = models.CharField(max_length=100)
     upload_time = models.DateTimeField()
     document = models.FileField(upload_to='media/library/')
+
+    def __str__(self):
+        return self.title
