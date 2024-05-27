@@ -14,7 +14,14 @@ def library(request):
 
 
 def login(request):
-    pass
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'login.html',
+        {
+            "title": "Log In"
+        }
+    )
 
 
 def logout(request):

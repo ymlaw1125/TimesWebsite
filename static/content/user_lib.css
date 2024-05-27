@@ -79,7 +79,7 @@
 
 
 /*     button with image (magazine button       */
-.btn {
+.general_btn {
   background-color: #9D9D9D;
   border: none;
   color: white;
@@ -96,7 +96,7 @@
   width: calc(33.33% - 4%);
 }
 
-.btn .description {
+.general_btn .description {
   width: 100%;
   text-align: center;
   font-size: 12px;
@@ -107,12 +107,12 @@
 }
 
 /* On hover, change background color */
-.btn:hover {
+.general_btn:hover {
   background-color: #DDDDDD;
 }
 
 /* Style for the image */
-.btn img {
+.general_btn img {
   max-width: 100%;
   height: auto;
   display: block;
@@ -120,7 +120,7 @@
 }
 
 /* Style for the text */
-.btn span {
+.general_btn span {
   display: block;
   padding: 20px;
   border: 5px solid white;

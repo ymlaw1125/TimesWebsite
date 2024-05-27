@@ -1,0 +1,141 @@
+/* font
+// <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 100 to 900
+
+.montserrat-<uniquifier> {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+*/
+
+:root{
+  --heading:var(--heading)"Montserrat",sans-serif;
+}
+
+body{
+  background-color: #f0f0f0;
+}
+
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+  overflow-x: hidden;
+  align-items: center;
+}
+
+.container1 {
+  max-width:100%;
+  margin: 0 auto;
+}
+
+.banner {
+  flex: 1;
+  text-align: center;
+}
+
+.banner img {
+  width: 100%;
+  max-width: 1000px;
+}
+
+.heading {
+  text-align:center;
+}
+
+.issues{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.issue{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
+  margin: 20px;
+}
+
+.issue img{
+  max-width: 300px;
+  max-height: 600px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.issue h3{
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+.container2 {
+  max-width:100%;
+  margin: 0 auto;
+}
+
+.articles{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.article{
+  overflow: hidden;
+  position: relative;
+  padding: 6px;
+}
+
+.article img{
+  display: block;
+  max-width: 220px;
+  max-height: 300px;
+}
+
+.content{
+  position: absolute;
+  bottom: 0;
+  left: 5px;
+  right: 5px;
+  padding: 10px 20px;
+  color: #f3f3f3;
+}
+
+.content h3{
+  font-size: 14px;
+  text-shadow: 0 0 2px #000;
+  display: inline;
+  background-color: red;
+  border-radius: 5px;
+  padding: 5px 10px 4px 10px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.content h4{
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.content p{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+
+
+@media(max-width: 767px){
+  .footer-col{
+    width: 50%;
+  }
+}
+
+@media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+  }
+}

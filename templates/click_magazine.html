@@ -1,23 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="../static/content/user_lib.css" rel="stylesheet"/>
-</head>
-<body>
-<div class="v42_21">
-    <div class="v2027_63"></div>
-    <div class="v2027_64"></div>
-    <div class="v2027_72"></div>
-    <span class="v2027_73">Read Now</span>
-    <div class="v2027_76"></div>
-    <span class="v2027_77">Save As</span>
-    <span class="v2027_74">2024 JanFeb</span>
-    <span class="v2027_75">January 2, 2024</span>
-    <div class="v4005_15"></div>
-    <span class="v2026_29">Love is th meaning of life. Life is the meaning of love. Love is all you need. All you need is love. </span>
-    <div class="v4015_84"></div>
+{% extends "layout.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block header %}
+    <link href="../../static/content/click_magazine.css" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+<div>
+  <p class="content1"> 2024 JanFeb </p>
+  <p class="content2"> January 2, 2024 </p>
+
+  <button class = "btn1">Read Now</button>
+  <button class = "btn2">Save As</button>
+
+  <div class="image_container">
+    <img class="image1" src="../../static/images/0d968f34ae1f976de2d0e89708650fcd.jpg" alt="Example Image">
+  </div>
+
+  <div class="scroll_container">
+    <div class="button-wrapper">
+      <button class="general_btn">
+        <img src="../../static/images/example1.jpg" alt="Image">
+        <span class="description">January 1, 2024</span>
+      </button>
+      <button class="general_btn">
+        <img src="../../static/images/example1.jpg" alt="Image">
+        <span class="description">February 1, 2024</span>
+      </button>
+      <button class="general_btn">
+        <img src="../../static/images/example1.jpg" alt="Image">
+        <span class="description">March 1, 2024</span>
+      </button>
+      <button class="general_btn">
+        <img src="../../static/images/example1.jpg" alt="Image">
+        <span class="description">April 1, 2024</span>
+      </button>
+      <button class="general_btn">
+        <img src="../../static/images/example1.jpg" alt="Image">
+        <span class="description">May 1, 2024</span>
+      </button>
+      <button class="general_btn">
+        <img src="../../static/images/example1.jpg" alt="Image">
+        <span class="description">June 1, 2024</span>
+      </button>
+      <button class="general_btn">
+        <img src="../../static/images/example1.jpg" alt="Image">
+        <span class="description">July 1, 2024</span>
+      </button>
+      <button class="general_btn">
+        <img src="../../static/images/example1.jpg" alt="Image">
+        <span class="description">August 1, 2024</span>
+      </button>
+    </div>
+  </div>
 </div>
-</body>
-</html>
+
+{% endblock %}

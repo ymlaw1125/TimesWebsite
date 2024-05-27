@@ -1,10 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layout.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block header %}
+    <link href="../../static/content/home.css" rel="stylesheet" />
 
-</body>
-</html>
+{% endblock %}c
+{% block content %}
+<div class="main">
+    <div class="container1">
+        <div class="banner">
+            <a href="#"><img src="../../static/images/home_banner.jpg" alt="Banner Image"></a>
+        </div>
+        <div class = "heading">
+            <h2>Recent Issues</h2>
+        </div>
+        <div class = "issues">
+            <div class = "issue">
+                <a href="#"><img src="../../static/images/home_v105_3.png" alt="Magazine Issue"></a>
+                <h3>2024 Jan Feb</h3>
+                <p>January 2, 2024</p>
+            </div>
+            <div class = "issue">
+                <a href="#"><img src="../../static/images/home_v101_8.png" alt="Magazine Issue"></a>
+                <h3>2024 Jan Feb</h3>
+                <p>January 2, 2024</p>
+            </div>
+            <div class = "issue">
+                <a href="#"><img src="../../static/images/home_v101_7.png" alt="Magazine Issue"></a>
+                <h3>2024 Jan Feb</h3>
+                <p>January 2, 2024</p>
+            </div>
+        </div>
+    </div>
+    <div class = "container2">
+        <div class = "heading">
+            <h2>YOU SHOULD KNOW</h2>
+        </div>
+        <div class = "articles">
+            <div class = "article">
+                <a href="#"><img src="../../static/images/home_awards.webp"></a>
+                <div class = "content">
+                    <h3>Activism</h3>
+                    <h4>Jane Fonda Champions Climate Action for Every Generation</h4>
+                    <p>Stephanie Zachrek</p>
+                </div>
+            </div>
+            <div class = "article">
+                <a href="#"><img src="../../static/images/home_awards.webp"></a>
+                <div class = "content">
+                    <h3>Activism</h3>
+                    <h4>Jane Fonda Champions Climate Action for Every Generation</h4>
+                    <p>Stephanie Zachrek</p>
+                </div>
+            </div>
+            <div class = "article">
+                <a href="#"><img src="../../static/images/home_awards.webp"></a>
+                <div class = "content">
+                    <h3>Activism</h3>
+                    <h4>Jane Fonda Champions Climate Action for Every Generation</h4>
+                    <p>Stephanie Zachrek</p>
+                </div>
+            </div>
+            <div class = "article">
+                <a href="#"><img src="../../static/images/home_awards.webp"></a>
+                <div class = "content">
+                    <h3>Activism</h3>
+                    <h4>Jane Fonda Champions Climate Action for Every Generation</h4>
+                    <p>Stephanie Zachrek</p>
+                </div>
+            </div>
+            <div class = "article">
+                <a href="#"><img src="../../static/images/home_awards.webp"></a>
+                <div class = "content">
+                    <h3>Activism</h3>
+                    <h4>Jane Fonda Champions Climate Action for Every Generation</h4>
+                    <p>Stephanie Zachrek</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

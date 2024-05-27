@@ -1,12 +1,12 @@
-{% extends "nav_bar.html" %}
+{% extends "layout.html" %}
 {% block title %}{{title}}{% endblock %}
 {% block header %}
-    <link href="../static/content/user_lib.css" rel="stylesheet" />
+    <link href="../../static/content/user_lib.css" rel="stylesheet" />
 {% endblock %}
 {% block content %}
 <div>
       <div class="top-right-border">
-        <button class = "searchBTN"><img src="../static/images/buttonex.svg"></button>
+        <button class = "searchBTN"><img src="../../static/images/buttonex.svg"></button>
       </div>
       <!--
       <div class="c_library-frame">
@@ -39,9 +39,8 @@
         // Generate buttons
         for (let i= 1; i <= numberOfButtons; i++) {
           const button = document.createElement('button');
-          button.className = 'btn';
-          button.innerHTML = `<img src="../static/images/example1.jpg" alt="Image"> <span
-          class="description">${description[i-1]}</span>`;
+          button.className = 'general_btn';
+          button.innerHTML = `<img src="../../static/images/example1.jpg" alt="Image"> <span class="description">${description[i-1]}</span>`;
           buttonContainer.appendChild(button);
         }
     </script>
