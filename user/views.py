@@ -24,5 +24,16 @@ def login(request):
     )
 
 
+def signup(request):
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'signup.html',
+        {
+            "title": "Sign Up"
+        }
+    )
+
+
 def logout(request):
     pass

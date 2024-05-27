@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "layout.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block header %}
+    <link rel="stylesheet" href="../../static/content/login.css" />
+{% endblock %}
+{% block content %}
+    <div class="bigcontainer">
+        <div class="login-container">
+            <h2>Sign Up!</h2>
+            <form>
+                <label for="name">NAME</label>
+                <input id="name" class="form-control" placeholder="name">
+                <label for="email">EMAIL</label>
+                <input id="email" class="form-control" placeholder="email">
+                <label for="usrname">USERNAME</label>
+                <input id="usrname" class="form-control" placeholder="username">
+                <label for="pwd">PASSWORD</label>
+                <input id="pwd" type="password" class="form-control" placeholder="password">
+                <a href="#" class="text-white">Forgot Password</a>
+                <button type="submit" class="btn btn-dark btn-block my-2">Sign in</button>
+            </form>
+            <p>or</p>
+            <button class="btn bg-primary text-white btn-block my-3"><strong>Continue with Facebook</strong></button>
+            <button class="btn btn-light text-secondary btn-block my-3"><strong>Continue with Google</strong></button>
+            <button class="btn btn-dark text-white btn-block my-3"><strong>Continue with Apple</strong></button>
+        </div>
+    </div>
+{% endblock %}

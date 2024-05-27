@@ -17,11 +17,19 @@ def click_magazines(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'click_magazine.html',
+        'magazine_click.html',
         {
             "title": "Magazine"
         }
     )
 
+
 def magazines(request):
-    pass
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'magazines.html',
+        {
+            "title": "Magazines"
+        }
+    )
