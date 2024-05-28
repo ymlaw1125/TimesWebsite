@@ -18,14 +18,15 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 
+from user.views import *
+
 urlpatterns = [
+    path('', include('magazines.urls')),
     path('admin/', admin.site.urls),
-    path('home/', include('magazines.urls')),
     path('magazines/', include('magazines.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('', include('magazines.urls')),
-    path('login/', include('user.urls')),
-    path('logout/', include('user.urls')),
+    path('login/', login, name='login'),
+    path('logout/', logout, name='logout'),
 ]
 
 if settings.DEBUG:
