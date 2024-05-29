@@ -19,14 +19,16 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from user.views import *
+from magazines.views import *
 
 urlpatterns = [
-    path('', include('magazines.urls')),
+    path('', home, name='home'),
     path('admin/', admin.site.urls),
-    path('magazines/', include('magazines.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('magazine/', include('magazines.urls')),
+    path('profile', include('user.urls')),
     path('login/', login, name='login'),
     path('logout/', logout, name='logout'),
+    path('signup/', signup, name='signup'),
 ]
 
 if settings.DEBUG:

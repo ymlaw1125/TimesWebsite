@@ -15,23 +15,24 @@ def home(request):
     )
 
 
-def click_magazines(request):
+def magazine(request, magazine_id):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'magazine_click.html',
+        'magazine.html',
         {
-            "title": "Magazine"
+            "title": "Magazine",
+            "id": magazine_id,
         }
     )
 
 
-def magazines(request):
+def library(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'magazines.html',
+        'library.html',
         {
-            "title": "Magazines"
+            "title": "Library"
         }
     )
