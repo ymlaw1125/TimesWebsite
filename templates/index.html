@@ -10,6 +10,101 @@
         <div class="banner">
             <a href="#"><img src="../static/images/home_banner.jpg" alt="Banner Image"></a>
         </div>
+        <div class="row card-body">
+            <div class="col-6 text-center">
+                <!-- Modal for adding data -->
+                <button class="btn btn-light btn-lg" data-bs-toggle="modal" data-bs-target="#addMagazineForm"><b>Add Magazine</b></button>
+                <div class="modal fade" id="addMagazineForm"
+                     tabindex="-1" aria-hidden="true"
+                     aria-labelledby="dataFormLabel">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="dataFormLabel">Add Magazine</h5>
+                                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" id="addMagazine" class="form-horizontal" name="dataForm" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="form_type" value="addMagazine" />
+                                    <div class="form-group text-start">
+                                        <label for="title">Title</label>
+                                        <input type="text" id="title" class="form-control" name="title" placeholder="Enter Magazine Title" />
+                                    </div>
+                                    <div class="form-group text-start">
+                                        <label for="genre">Genre</label>
+                                        <select class="form-select" name="genre" id="genre">
+                                            <option value="horror">Horror</option>
+                                            <option value="comedy">Comedy</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group text-start">
+                                        <label for="publisher">Publisher</label>
+                                        <input type="text" id="publisher" class="form-control" name="publisher" placeholder="Enter Magazine Publisher" />
+                                    </div>
+                                    <div class="form-group text-start">
+                                        <label for="document">Select Magazine Document </label>
+                                        <input class="form-control" id="document"
+                                               name="document" type="file"/>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn-secondary btn" data-bs-dismiss="modal">Close</button>
+                                <button class="btn btn-primary" type="submit" form="addData">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center">
+                <!-- Modal for removing data -->
+                <button class="btn btn-light btn-lg" data-bs-toggle="modal" data-bs-target="#removeMagazineForm"><b>Remove Magazine</b></button>
+                <div class="modal fade" id="removeMagazineForm"
+                     tabindex="-1" aria-hidden="true"
+                     aria-labelledby="removedataFormLabel">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="removedataFormLabel">Rremove Magazine</h5>
+                                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" id="removeMagazine" class="form-horizontal" name="dataForm" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="form_type" value="removeMagazine" />
+                                    <div class="form-group text-start">
+                                        <label for="remove_title">Title</label>
+                                        <input type="text" id="remove_title" class="form-control" name="title" placeholder="Enter Magazine Title" />
+                                    </div>
+                                    <div class="form-group text-start">
+                                        <label for="genre">Genre</label>
+                                        <select class="form-select" name="genre" id="genre">
+                                            <option value="horror">Horror</option>
+                                            <option value="comedy">Comedy</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group text-start">
+                                        <label for="publisher">Publisher</label>
+                                        <input type="text" id="publisher" class="form-control" name="publisher" placeholder="Enter Magazine Publisher" />
+                                    </div>
+                                    <div class="form-group text-start">
+                                        <label for="document">Select Magazine Document </label>
+                                        <input class="form-control" id="document"
+                                               name="document" type="file"/>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn-secondary btn" data-bs-dismiss="modal">Close</button>
+                                <button class="btn btn-primary" type="submit" form="addData">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
         <div class = "heading">
             <h2>Recent Issues</h2>
         </div>
