@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../static/content/layout.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,25 +28,30 @@
         </div>
         <a class="navbar-brand mx-auto" href="/"><h3 class="text-danger">SHSID|Times</h3></a>
         <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item mx-2">
+                <a class="nav-link active text-danger" href="/logout/"><h6>LOG OUT</h6></a>
+            </li>
+            {% else %}
             <li class="nav-item mx-2">
                 <a class="nav-link active text-danger" href="/login/"><h6>SIGN IN</h6></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active text-white bg-danger" href="/signup"><h6>SIGN UP</h6></a>
             </li>
+            {% endif %}
         </ul>
     </div>
 </nav>
 {% block content %}{% endblock %}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 {% block scripts %}{% endblock %}
 
 <div class = "footerContainer">
         <div class="name">
-            <h1>SHSID|Times</h1>
+            <a class="mx-auto navbar-brand" href="/"><h3 class="text-danger">SHSID|Times</h3></a>
         </div>
         <div class="links">
             <ul>
