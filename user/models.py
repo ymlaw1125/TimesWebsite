@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager, PermissionsMixin
 from django.db import models
+from magazines.models import Magazine
 
 
 class UserManager(BaseUserManager):
@@ -40,14 +41,20 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
 
-    def get_absolute_url(self):
-        return reverse('profile', args=[str(self.id)])
-
     def get_favorites(self):
         return self.favorites
 
     def set_favorites(self, favorites):
         self.favorites = favorites
+
+    def add_favorite(self, magazine_id):
+        if (Magazine.objects.filter(id=magazine_id).exists() and magazine_id not in
+                self.favorites['id']):
+            self.favorites['id'].append(magazine_id)
+
+    def remove_favorite(self, magazine_id):
+        if Magazine.objects.filter(id=magazine_id).exists() and magazine_id in self.favorites['id']:
+            self.favorites['id'].remove(magazine_id)
 
     def get_full_name(self):
         return self.username

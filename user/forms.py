@@ -3,7 +3,7 @@ from django.forms import fields
 from django.core.exceptions import ValidationError
 
 
-class RegisterForm(Form):
+class SignupForm(Form):
     username = fields.CharField(
         required=True,
         min_length=3,

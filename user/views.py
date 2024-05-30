@@ -1,7 +1,7 @@
 from django.http import HttpRequest, JsonResponse
 from django.shortcuts import render, reverse, redirect
 from django.contrib.auth import get_user_model
-from .form import *
+from .forms import SignupForm
 
 User = get_user_model()
 
@@ -42,10 +42,11 @@ def signup(request):
                 "title": "Sign Up"
             })
     else:
-        form = RegisterForm(request.POST)
+        form = SignupForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password1"]
+            print(password)
             email = form.cleaned_data["email"]
             username_exists = User.objects.filter(username=username).exists()
             if username_exists:
