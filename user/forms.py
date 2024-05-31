@@ -46,7 +46,7 @@ class SignupForm(Form):
             raise ValidationError("Email already exists")
         return email
 
-    def clean(self):
+    def clean_password2(self):
         if not self.errors.get("password1"):
             if self.cleaned_data["password2"] != self.cleaned_data["password1"]:
                 raise ValidationError("Passwords do not match")

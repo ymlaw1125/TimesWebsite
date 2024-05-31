@@ -11,15 +11,22 @@
                 {% csrf_token %}
                 <label for="username">USERNAME/EMAIL</label>
                 <input name="username" id="username" class="form-control" placeholder="email">
+                <div class="form-group">
+                    {% if form.errors.username|length > 0 %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ form.errors.username.0 }}
+                        </div>
+                    {% endif %}
+                </div>
                 <label for="password">PASSWORD</label>
                 <input name="password" id="password" type="password" class="form-control"
                        placeholder="password">
                 <div class="form-group">
-                    {% for message in messages %}
-                    <div class="alert alert-danger" role="alert">
-                        {{message}}
-                    </div>
-                    {% endfor %}
+                    {% if form.errors.password|length > 0 %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ form.errors.password.0 }}
+                        </div>
+                    {% endif %}
                 </div>
                 <a href="#" class="text-white">Forgot Password</a>
                 <button type="submit" class="btn btn-dark btn-block my-2">Sign in</button>

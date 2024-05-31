@@ -34,7 +34,6 @@ class CustomUserManager(BaseUserManager):
 
 # Create your models here.
 class CustomUser(AbstractUser):
-    # TODO change favorite to ManyToManyField
     favorites = models.ManyToManyField(to=Magazine,
                                        related_name='saved_users')
     objects = CustomUserManager()
