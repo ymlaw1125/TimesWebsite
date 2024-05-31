@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 {% block title %}{{ title }}{% endblock %}
 {% block header %}
-    <link href="../static/content/home.css" rel="stylesheet"/>
+    <link href="{% static 'content/home.css' %}" rel="stylesheet"/>
 
 {% endblock %}
 {% block content %}
 <div class="main">
     <div class="container1">
         <div class="banner">
-            <a href="#"><img src="../static/images/home_banner.jpg" alt="Banner Image"></a>
+            <a href="#"><img src="{% static 'images/home_banner.jpg' %}" alt="Banner Image"></a>
         </div>
         <div class="row card-body">
             <div class="col-6 text-center">
@@ -110,17 +110,17 @@
         </div>
         <div class = "issues">
             <div class = "issue">
-                <a href="#"><img src="../static/images/home_v105_3.png" alt="Magazine Issue"></a>
+                <a href="#"><img src="{% static 'images/home_v105_3.png' %}" alt="Magazine Issue"></a>
                 <h3>2024 Jan Feb</h3>
                 <p>January 2, 2024</p>
             </div>
             <div class = "issue">
-                <a href="#"><img src="../static/images/home_v101_8.png" alt="Magazine Issue"></a>
+                <a href="#"><img src="{% static 'images/home_v101_8.png' %}" alt="Magazine Issue"></a>
                 <h3>2024 Jan Feb</h3>
                 <p>January 2, 2024</p>
             </div>
             <div class = "issue">
-                <a href="#"><img src="../static/images/home_v101_7.png" alt="Magazine Issue"></a>
+                <a href="#"><img src="{% static 'images/home_v101_7.png' %}" alt="Magazine Issue"></a>
                 <h3>2024 Jan Feb</h3>
                 <p>January 2, 2024</p>
             </div>
@@ -132,7 +132,7 @@
         </div>
         <div class = "articles">
             <div class = "article">
-                <a href="#"><img src="../static/images/home_awards.webp"></a>
+                <a href="#"><img src="{% static 'images/home_awards.webp' %}"></a>
                 <div class = "content">
                     <h3>Activism</h3>
                     <h4>Jane Fonda Champions Climate Action for Every Generation</h4>
@@ -140,7 +140,7 @@
                 </div>
             </div>
             <div class = "article">
-                <a href="#"><img src="../static/images/home_awards.webp"></a>
+                <a href="#"><img src="{% static 'images/home_awards.webp' %}"></a>
                 <div class = "content">
                     <h3>Activism</h3>
                     <h4>Jane Fonda Champions Climate Action for Every Generation</h4>
@@ -148,7 +148,7 @@
                 </div>
             </div>
             <div class = "article">
-                <a href="#"><img src="../static/images/home_awards.webp"></a>
+                <a href="#"><img src="{% static 'images/home_awards.webp' %}"></a>
                 <div class = "content">
                     <h3>Activism</h3>
                     <h4>Jane Fonda Champions Climate Action for Every Generation</h4>
@@ -156,7 +156,7 @@
                 </div>
             </div>
             <div class = "article">
-                <a href="#"><img src="../static/images/home_awards.webp"></a>
+                <a href="#"><img src="{% static 'images/home_awards.webp' %}"></a>
                 <div class = "content">
                     <h3>Activism</h3>
                     <h4>Jane Fonda Champions Climate Action for Every Generation</h4>
@@ -164,7 +164,7 @@
                 </div>
             </div>
             <div class = "article">
-                <a href="#"><img src="../static/images/home_awards.webp"></a>
+                <a href="#"><img src="{% static 'images/home_awards.webp' %}"></a>
                 <div class = "content">
                     <h3>Activism</h3>
                     <h4>Jane Fonda Champions Climate Action for Every Generation</h4>
