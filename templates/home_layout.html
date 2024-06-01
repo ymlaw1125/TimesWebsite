@@ -1,11 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
-  <div class = 'center-container'>
-    <div class="button-container">
-      <button class = 'btn1'>Magazines</button>
-      <button class = 'btn2'><b>My Library</b></button>
-      <button class = 'btn3'>Bookmarks</button>
+    <div class = 'row'>
+        <a class='btn col-3 ms-auto' href="../../magazine/"><h4>Magazines</h4></a>
+        <a class='btn col-3 me-auto' href="../../profile/favorites/"><h4>My Library</h4></a>
+        <button class="btn col-1 me-0"><i class="bi bi-search"></i></button>
     </div>
-  </div>
 {% block content2 %}{% endblock %}
 {% endblock %}

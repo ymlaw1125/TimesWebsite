@@ -52,7 +52,7 @@ MIDDLEWARE = [
 ]
 
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.AllowAllUsersModelBackend',
+    'user.models.CustomUserBackend',
 ]
 
 ROOT_URLCONF = 'TimesWebsite.urls'

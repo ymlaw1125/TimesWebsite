@@ -1,9 +1,10 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager, PermissionsMixin
 from django.db import models
+from django.db.models import Q
 from magazines.models import Magazine
 
 
-class UserManager(BaseUserManager):
+class CustomUserManager(BaseUserManager):
     def _create_user(self, username, password, email, **kwargs):
         if not username:
             raise ValueError("Please enter your username")
@@ -11,10 +12,8 @@ class UserManager(BaseUserManager):
             raise ValueError("Please enter your password")
         if not email:
             raise ValueError("Please enter your email address")
-        kwargs['favorites'] = {'id': []}
         user = self.model(username=username, email=email, **kwargs)
         user.set_password(password)
-
         user.save()
         return user
 
@@ -35,8 +34,9 @@ class UserManager(BaseUserManager):
 
 # Create your models here.
 class CustomUser(AbstractUser):
-    favorites = models.JSONField(default=dict)
-    objects = UserManager()
+    favorites = models.ManyToManyField(to=Magazine,
+                                       related_name='saved_users')
+    objects = CustomUserManager()
 
     def __str__(self):
         return self.username
@@ -61,3 +61,18 @@ class CustomUser(AbstractUser):
 
     def get_short_name(self):
         return self.username
+
+
+from django.contrib.auth.backends import AllowAllUsersModelBackend
+
+
+class CustomUserBackend(AllowAllUsersModelBackend):
+    def authenticate(self, request, username=None, password=None, **kwargs):
+        print('a')
+        if username is None or password is None:
+            return
+        user = CustomUser.objects.filter(Q(username=username) | Q(email=username)).first()
+        if user:
+            if user.check_password(password) and self.user_can_authenticate(user):
+                return user
+        return

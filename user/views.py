@@ -3,6 +3,7 @@ from django.shortcuts import render, reverse, redirect
 from django.contrib.auth import (get_user_model, logout as django_logout, login as django_login,
                                  authenticate)
 from .forms import *
+from django.contrib import messages
 
 User = get_user_model()
 
@@ -32,21 +33,11 @@ def login(request):
                 django_login(request, user)
                 request.session['username'] = user.username
                 return redirect('home')
-            elif user and not user.is_active:
-                # TODO add login error message to template
-                return JsonResponse({"code": 400,
-                                     "message": "user not active",
-                                     "data": {"error": "user not active"}
-                                     })
             else:
-                # TODO add login error message to template
-                return JsonResponse({"code": 400,
-                                     "message": "username or password incorrect",
-                                     "data": {"error": "username or password incorrect"}
-                                     })
+                form.errors['username'] = ["Username or password is incorrect."]
+                return render(request, 'login.html', {"title": "Log In", "form": form})
         else:
-            # TODO add error message to template
-            return JsonResponse(form.errors, safe=False)
+            return render(request, 'login.html', {"title": "Log In", "form": form})
 
 
 def logout(request):
@@ -68,5 +59,4 @@ def signup(request):
             User.objects.create_user(username=username, password=password, email=email)
             return redirect("login")
         else:
-            # TODO add error message to template
-            return JsonResponse(form.errors, safe=False)
+            return render(request, 'signup.html', {"title": "Sign Up", "form": form})
