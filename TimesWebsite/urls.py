@@ -25,7 +25,7 @@ urlpatterns = [
     path('', home, name='home'),
     path('admin/', admin.site.urls),
     path('magazine/', include('magazines.urls')),
-    path('profile', include('user.urls')),
+    path('profile/', include('user.urls')),
     path('login/', login, name='login'),
     path('logout/', logout, name='logout'),
     path('signup/', signup, name='signup'),
