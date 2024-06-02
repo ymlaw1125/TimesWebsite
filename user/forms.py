@@ -50,7 +50,7 @@ class SignupForm(Form):
         if not self.errors.get("password1"):
             if self.cleaned_data["password2"] != self.cleaned_data["password1"]:
                 raise ValidationError("Passwords do not match")
-            return self.cleaned_data
+            return self.cleaned_data["password2"]
 
 
 class LoginForm(Form):
@@ -74,3 +74,81 @@ class LoginForm(Form):
             "max_length": "Password must have at most 18 characters",
         }
     )
+
+
+class EditProfileForm(Form):
+    first_name = fields.CharField(
+        min_length=3,
+        max_length=18,
+        error_messages={
+            "min_length": "Username must have at least 3 characters",
+            "max_length": "Username must have at most 18 characters",
+        }
+    )
+    last_name = fields.CharField(
+        min_length=3,
+        max_length=18,
+        error_messages={
+            "min_length": "Username must have at least 3 characters",
+            "max_length": "Username must have at most 18 characters",
+        }
+    )
+    email = fields.EmailField(
+        required=True,
+        min_length=3,
+        max_length=18,
+        error_messages={
+            "required": "Username cannot be empty",
+            "min_length": "Username must have at least 3 characters",
+            "max_length": "Username must have at most 18 characters",
+        }
+    )
+    username = fields.CharField(
+        required=True,
+        min_length=3,
+        max_length=18,
+        error_messages={
+            "required": "Username cannot be empty",
+            "min_length": "Username must have at least 3 characters",
+            "max_length": "Username must have at most 18 characters",
+        }
+    )
+
+
+class PasswordResetForm(Form):
+    old_pwd = fields.CharField(
+        required=True,
+        min_length=3,
+        max_length=18,
+        error_messages={
+            "required": "Password cannot be empty",
+            "min_length": "Password must have at least 3 characters",
+            "max_length": "Password must have at most 18 characters",
+        }
+    )
+    new_pwd = fields.CharField(
+        required=True,
+        min_length=3,
+        max_length=18,
+        error_messages={
+            "required": "Password cannot be empty",
+            "min_length": "Password must have at least 3 characters",
+            "max_length": "Password must have at most 18 characters",
+        }
+    )
+    conf_pwd = fields.CharField(
+        required=True,
+        min_length=3,
+        max_length=18,
+        error_messages={
+            "required": "Password cannot be empty",
+            "min_length": "Password must have at least 3 characters",
+            "max_length": "Password must have at most 18 characters",
+        }
+    )
+
+    def clean_conf_pwd(self):
+        if not self.errors.get("new_pwd"):
+            if self.cleaned_data["conf_pwd"] != self.cleaned_data["new_pwd"]:
+                raise ValidationError("Password confirmation doesn't match the password")
+            return self.cleaned_data

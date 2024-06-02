@@ -1,5 +1,5 @@
 {% extends "profile_layout.html" %}
-{% block title %}{{title}}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 {% block content2 %}
     <div class="content">
         <div class="card">
@@ -7,22 +7,47 @@
                 <h3 class="text-center mt-3">Reset Password</h3>
                 <form class="mt-4" action="" method="POST" id="change_pwd">
                     {% csrf_token %}
-                    <input type="hidden" name="form_type" value="change_pwd" />
+                    <input type="hidden" name="form_type" value="change_pwd"/>
                     <div class="my-2">
                         <label for="old_pwd"><strong>Old Password</strong></label>
-                        <input class="form-control" id="old_pwd" />
+                        <input class="form-control" type="password" id="old_pwd" name="old_pwd"
+                               value="{{ form.old_pwd.value }}"/>
+                        <div class="form-group">
+                            {% if form.errors.old_pwd|length > 0 %}
+                                <div class="alert alert-danger" role="alert">
+                                    {{ form.errors.old_pwd.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
                     </div>
                     <div class="my-2">
                         <label for="new_pwd"><strong>New Password</strong></label>
-                        <input class="form-control" id="new_pwd" />
+                        <input class="form-control" type="password" id="new_pwd" name="new_pwd"
+                               value="{{ form.new_pwd.value }}"/>
+                        <div class="form-group">
+                            {% if form.errors.new_pwd|length > 0 %}
+                                <div class="alert alert-danger" role="alert">
+                                    {{ form.errors.new_pwd.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
                     </div>
                     <div class="my-2">
                         <label for="conf_pwd"><strong>Confirm New Password</strong></label>
-                        <input class="form-control" id="conf_pwd" />
+                        <input class="form-control" type="password" id="conf_pwd" name="conf_pwd"
+                               value="{{ form.conf_pwd.value }}"/>
+                        <div class="form-group">
+                            {% if form.errors.conf_pwd|length > 0 %}
+                                <div class="alert alert-danger" role="alert">
+                                    {{ form.errors.conf_pwd.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
                     </div>
                 </form>
                 <div class="text-center mt-3">
-                    <button type="submit" class="btn btn-primary" form="change_pwd">Save changes</button>
+                    <button type="submit" class="btn btn-primary" form="change_pwd">Save changes
+                    </button>
                 </div>
             </div>
         </div>
