@@ -1,0 +1,30 @@
+{% extends "profile_layout.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block content2 %}
+    <div class="content">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="text-center mt-3">Reset Password</h3>
+                <form class="mt-4" action="" method="POST" id="change_pwd">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_type" value="change_pwd" />
+                    <div class="my-2">
+                        <label for="old_pwd"><strong>Old Password</strong></label>
+                        <input class="form-control" id="old_pwd" />
+                    </div>
+                    <div class="my-2">
+                        <label for="new_pwd"><strong>New Password</strong></label>
+                        <input class="form-control" id="new_pwd" />
+                    </div>
+                    <div class="my-2">
+                        <label for="conf_pwd"><strong>Confirm New Password</strong></label>
+                        <input class="form-control" id="conf_pwd" />
+                    </div>
+                </form>
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary" form="change_pwd">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

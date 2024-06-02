@@ -39,10 +39,6 @@
                                         </select>
                                     </div>
                                     <div class="form-group text-start">
-                                        <label for="publisher">Publisher</label>
-                                        <input type="text" id="publisher" class="form-control" name="publisher" placeholder="Enter Magazine Publisher" />
-                                    </div>
-                                    <div class="form-group text-start">
                                         <label for="document">Select Magazine Document </label>
                                         <input class="form-control" id="document"
                                                name="document" type="file"/>
@@ -51,7 +47,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn-secondary btn" data-bs-dismiss="modal">Close</button>
-                                <button class="btn btn-primary" type="submit" form="addData">Add</button>
+                                <button class="btn btn-primary" type="submit" form="addMagazine">Add</button>
                             </div>
                         </div>
                     </div>
@@ -109,21 +105,13 @@
             <h2>Recent Issues</h2>
         </div>
         <div class = "issues">
-            <div class = "issue">
-                <a href="#"><img src="../static/images/home_v105_3.png" alt="Magazine Issue"></a>
-                <h3>2024 Jan Feb</h3>
-                <p>January 2, 2024</p>
+            {% for issue in recent_issues %}
+                <div class = "issue">
+                <a href="{% url 'magazine' issue.id %}"><img src="../static/images/home_v105_3.png" alt="Magazine Issue"></a>
+                <h3>{{ issue.title }}</h3>
+                <p>{{ issue.upload_time.date }}</p>
             </div>
-            <div class = "issue">
-                <a href="#"><img src="../static/images/home_v101_8.png" alt="Magazine Issue"></a>
-                <h3>2024 Jan Feb</h3>
-                <p>January 2, 2024</p>
-            </div>
-            <div class = "issue">
-                <a href="#"><img src="../static/images/home_v101_7.png" alt="Magazine Issue"></a>
-                <h3>2024 Jan Feb</h3>
-                <p>January 2, 2024</p>
-            </div>
+            {% endfor %}
         </div>
     </div>
     <div class = "container2">

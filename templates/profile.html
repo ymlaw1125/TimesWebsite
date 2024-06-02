@@ -1,0 +1,33 @@
+{% extends "profile_layout.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block content2 %}
+    <div class="content">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="text-center mt-3">Personal Details</h3>
+                <form class="mt-4" action="" method="POST">
+                    {% csrf_token %}
+                    <div class="my-2">
+                        <label for="f_name"><strong>First Name:</strong></label>
+                        <input class="form-control" value="{{ user.first_name }}" id="f_name" />
+                    </div>
+                    <div class="my-2">
+                        <label for="l_name"><strong>Last Name:</strong></label>
+                        <input class="form-control" value="{{ user.last_name }}" id="l_name" />
+                    </div>
+                    <div class="my-2">
+                        <label for="email"><strong>Email:</strong></label>
+                        <input class="form-control" value="{{ user.email }}" id="email" />
+                    </div>
+                    <div class="my-2">
+                        <label for="username"><strong>Username:</strong></label>
+                        <input class="form-control" value="{{ user.username }}" id="username" />
+                    </div>
+                </form>
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

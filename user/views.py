@@ -4,7 +4,7 @@ from django.contrib.auth import (get_user_model, logout as django_logout, login 
                                  authenticate)
 from .forms import *
 from django.contrib import messages
-
+from django.contrib.auth.decorators import login_required
 User = get_user_model()
 
 
@@ -19,8 +19,33 @@ def favorites(request):
     )
 
 
+@login_required(login_url='/login/')
+def profile(request):
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'profile.html',
+        {
+            "title": "Profile"
+        }
+    )
+
+@login_required(login_url='/login/')
+def resetpassword(request):
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'reset_pwd.html',
+        {
+            "title": "Reset Password"
+        }
+    )
+
+
 def login(request):
     assert isinstance(request, HttpRequest)
+    if request.user.is_authenticated:
+        return redirect('/')
     if request.method == "GET":
         return render(request, 'login.html', {"title": "Log In"})
     else:
@@ -48,6 +73,8 @@ def logout(request):
 
 def signup(request):
     assert isinstance(request, HttpRequest)
+    if request.user.is_authenticated:
+        return redirect('/')
     if request.method == "GET":
         return render(request, 'signup.html', {"title": "Sign Up"})
     else:
