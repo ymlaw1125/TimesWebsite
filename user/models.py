@@ -35,7 +35,8 @@ class CustomUserManager(BaseUserManager):
 # Create your models here.
 class CustomUser(AbstractUser):
     favorites = models.ManyToManyField(to=Magazine,
-                                       related_name='saved_users')
+                                       related_name='saved_users',
+                                       blank=True)
     objects = CustomUserManager()
 
     def __str__(self):
@@ -68,7 +69,6 @@ from django.contrib.auth.backends import AllowAllUsersModelBackend
 
 class CustomUserBackend(AllowAllUsersModelBackend):
     def authenticate(self, request, username=None, password=None, **kwargs):
-        print('a')
         if username is None or password is None:
             return
         user = CustomUser.objects.filter(Q(username=username) | Q(email=username)).first()
