@@ -29,7 +29,7 @@ urlpatterns = [
     path('login/', login, name='login'),
     path('logout/', logout, name='logout'),
     path('signup/', signup, name='signup'),
-    path('resetpassword/', resetpassword, name="resetpassword")
+    path('resetpassword/', reset_password, name="resetpassword")
 ]
 
 if settings.DEBUG:

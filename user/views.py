@@ -30,8 +30,9 @@ def profile(request):
         }
     )
 
+
 @login_required(login_url='/login/')
-def resetpassword(request):
+def reset_password(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -45,7 +46,7 @@ def resetpassword(request):
 def login(request):
     assert isinstance(request, HttpRequest)
     if request.user.is_authenticated:
-        return redirect('/')
+        return redirect(reverse('home'))
     if request.method == "GET":
         return render(request, 'login.html', {"title": "Log In"})
     else:
@@ -74,7 +75,7 @@ def logout(request):
 def signup(request):
     assert isinstance(request, HttpRequest)
     if request.user.is_authenticated:
-        return redirect('/')
+        return redirect(reverse('home'))
     if request.method == "GET":
         return render(request, 'signup.html', {"title": "Sign Up"})
     else:
