@@ -107,8 +107,7 @@
         <div class = "issues">
             {% for issue in recent_issues %}
                 <div class = "issue">
-                <a href="{% url 'magazine' issue.id %}"><img src="{% static 'images/home_v105_3.png' %}" alt="Magazine
-                Issue"></a>
+                <a href="{% url 'magazine' issue.id %}"><img src="/media/{{ issue.cover }}" alt="Magazine Issue"></a>
                 <h3>{{ issue.title }}</h3>
                 <p>{{ issue.upload_time.date }}</p>
             </div>
