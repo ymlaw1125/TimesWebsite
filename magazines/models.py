@@ -7,7 +7,7 @@ from django.urls import reverse
 class Magazine(models.Model):
     title = models.CharField(max_length=100)
     genre = models.CharField(max_length=100)
-    cover = models.ImageField(upload_to='cover/', null=True)
+    cover = models.ImageField(upload_to='cover', blank=True)
     upload_time = models.DateTimeField(auto_now_add=True)
     document = models.FileField(upload_to='library/')
 

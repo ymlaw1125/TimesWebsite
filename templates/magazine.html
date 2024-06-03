@@ -6,7 +6,7 @@
     <div class="m-5">
         <div class="row">
             <div class="col-3">
-                <img src="../static/images/home_v105_3.png" alt="Example Image" class="img-fluid">
+                <img src="/media/{{ magazine.cover }}" alt="Example Image" class="img-fluid">
             </div>
             <div class="col-6">
                 <h2>{{ magazine.title }}</h2>
@@ -23,8 +23,8 @@
         </div>
         <div class="row">
             {% for issue in recent_issues %}
-                <a class="col text-center text-info row py-3" href="{% url 'magazine' issue.id %}">
-                    <img src="../static/images/home_v101_8.png" alt="Image" class="col-12">
+                <a class="col text-center text-info row py-3 text-decoration-none" href="{% url 'magazine' issue.id %}">
+                    <img src="/media/{{ issue.cover }}" alt="Image" class="col-12">
                     <span class="col-12">{{ issue.upload_time.date }}</span>
                     <span class="col-12">{{ issue.title }}</span>
                 </a>
