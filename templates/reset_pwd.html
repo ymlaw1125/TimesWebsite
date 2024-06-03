@@ -10,8 +10,7 @@
                     <input type="hidden" name="form_type" value="change_pwd"/>
                     <div class="my-2">
                         <label for="old_pwd"><strong>Old Password</strong></label>
-                        <input class="form-control" type="password" id="old_pwd" name="old_pwd"
-                               value="{{ form.old_pwd.value }}"/>
+                        <input class="form-control" type="password" id="old_pwd" name="old_pwd"/>
                         <div class="form-group">
                             {% if form.errors.old_pwd|length > 0 %}
                                 <div class="alert alert-danger" role="alert">
@@ -22,8 +21,7 @@
                     </div>
                     <div class="my-2">
                         <label for="new_pwd"><strong>New Password</strong></label>
-                        <input class="form-control" type="password" id="new_pwd" name="new_pwd"
-                               value="{{ form.new_pwd.value }}"/>
+                        <input class="form-control" type="password" id="new_pwd" name="new_pwd"/>
                         <div class="form-group">
                             {% if form.errors.new_pwd|length > 0 %}
                                 <div class="alert alert-danger" role="alert">
@@ -34,8 +32,7 @@
                     </div>
                     <div class="my-2">
                         <label for="conf_pwd"><strong>Confirm New Password</strong></label>
-                        <input class="form-control" type="password" id="conf_pwd" name="conf_pwd"
-                               value="{{ form.conf_pwd.value }}"/>
+                        <input class="form-control" type="password" id="conf_pwd" name="conf_pwd"/>
                         <div class="form-group">
                             {% if form.errors.conf_pwd|length > 0 %}
                                 <div class="alert alert-danger" role="alert">
