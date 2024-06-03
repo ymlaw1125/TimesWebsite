@@ -42,10 +42,12 @@ def magazine(request, magazine_id):
 
 def library(request):
     assert isinstance(request, HttpRequest)
+    magazines = Magazine.objects.all()
     return render(
         request,
         'library.html',
         {
-            "title": "Library"
+            "title": "Library",
+            "magazines": magazines,
         }
     )

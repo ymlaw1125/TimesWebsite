@@ -22,13 +22,15 @@
             </div>
         </div>
         <div class="row">
+            <!--<h1>EXPLORE MORE</h1>-->
             {% for issue in recent_issues %}
-                <a class="col text-center text-info row py-3 text-decoration-none" href="{% url 'magazine' issue.id %}">
+                <a class="col text-center text-dark row py-3 text-decoration-none" href="{% url 'magazine' issue.id %}">
                     <img src="/media/{{ issue.cover }}" alt="Image" class="col-12">
                     <span class="col-12">{{ issue.upload_time.date }}</span>
                     <span class="col-12">{{ issue.title }}</span>
                 </a>
             {% endfor %}
+            </a>
         </div>
     </div>
 {% endblock %}

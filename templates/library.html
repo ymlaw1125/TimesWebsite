@@ -4,29 +4,21 @@
     <link href="{% static 'content/user_lib.css' %}" rel="stylesheet" />
 {% endblock %}
 {% block content2 %}
-<div>
-      <div class="button-container" id="buttonContainer">
+    <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row">
+              {% for magazine in magazines %}
+                  <a class="col-md-4 text-decoration-none text-dark" href="{% url 'magazine' magazine.id %}">
+                      <div class="card mb-4 box-shadow">
+                        <img class="card-img-top" style="width: 100%; display: block;" src="/media/{{ magazine.cover }}" data-holder-rendered="true">
+                        <div class="card-body">
+                          <p class="card-text text-center">{{ magazine.title}}</p>
+                            <p class="card-text text-center">{{ magazine.upload_time.date}}</p>
+                        </div>
+                      </div>
+                    </a>
+              {% endfor %}
+          </div>
+        </div>
       </div>
-    </div>
-{% endblock %}
-{% block scripts %}
-    <script type="text/javascript">
-        const numberOfButtons = 8;
-        // container for description for each button
-        const description = [];
-        for (let i=1;i <= numberOfButtons;i++)
-          description.push("This is magazine" + i);
-
-        // Container for buttons
-        const buttonContainer = document.getElementById('buttonContainer');
-
-        // Generate buttons
-        for (let i= 1; i <= numberOfButtons; i++) {
-          const button = document.createElement('button');
-          button.className = 'general_btn';
-          button.innerHTML = `<img src="{% static 'images/example1.jpg' %}" alt="Image"> <span
-          class="description">${description[i-1]}</span>`;
-          buttonContainer.appendChild(button);
-        }
-    </script>
 {% endblock %}
