@@ -10,7 +10,8 @@
             <form action="" method="post">
                 {% csrf_token %}
                 <label for="username">USERNAME/EMAIL</label>
-                <input name="username" id="username" class="form-control" placeholder="email">
+                <input name="username" id="username" class="form-control"
+                       placeholder="username" value="{{ form.username.value }}" >
                 <div class="form-group">
                     {% if form.errors.username|length > 0 %}
                         <div class="alert alert-danger" role="alert">
@@ -20,7 +21,7 @@
                 </div>
                 <label for="password">PASSWORD</label>
                 <input name="password" id="password" type="password" class="form-control"
-                       placeholder="password">
+                       placeholder="password" value="{{ form.password.value }}">
                 <div class="form-group">
                     {% if form.errors.password|length > 0 %}
                         <div class="alert alert-danger" role="alert">

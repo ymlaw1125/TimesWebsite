@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 {% block title %}{{ title }}{% endblock %}
 {% block header %}
-    <link href="../static/content/home.css" rel="stylesheet"/>
+    <link href="{% static 'content/home.css' %}" rel="stylesheet"/>
 
 {% endblock %}
 {% block content %}
 <div class="main">
     <div class="container1">
         <div class="banner">
-            <a href="#"><img src="../static/images/home_banner.jpg" alt="Banner Image"></a>
+            <a href="#"><img src="{% static 'images/home_banner.jpg' %}" alt="Banner Image"></a>
         </div>
         <div class="row card-body">
             <div class="col-6 text-center">
@@ -107,7 +107,8 @@
         <div class = "issues">
             {% for issue in recent_issues %}
                 <div class = "issue">
-                <a href="{% url 'magazine' issue.id %}"><img src="../static/images/home_v105_3.png" alt="Magazine Issue"></a>
+                <a href="{% url 'magazine' issue.id %}"><img src="{% static 'images/home_v105_3.png' %}" alt="Magazine
+                Issue"></a>
                 <h3>{{ issue.title }}</h3>
                 <p>{{ issue.upload_time.date }}</p>
             </div>
@@ -120,7 +121,7 @@
         </div>
         <div class = "articles">
             <div class = "article">
-                <a href="#"><img src="../static/images/home_awards.webp"></a>
+                <a href="#"><img src="{% static 'images/home_awards.webp' %}"></a>
                 <div class = "content">
                     <h3>Activism</h3>
                     <h4>Jane Fonda Champions Climate Action for Every Generation</h4>
@@ -128,7 +129,7 @@
                 </div>
             </div>
             <div class = "article">
-                <a href="#"><img src="../static/images/home_awards.webp"></a>
+                <a href="#"><img src="{% static 'images/home_awards.webp' %}"></a>
                 <div class = "content">
                     <h3>Activism</h3>
                     <h4>Jane Fonda Champions Climate Action for Every Generation</h4>
@@ -136,7 +137,7 @@
                 </div>
             </div>
             <div class = "article">
-                <a href="#"><img src="../static/images/home_awards.webp"></a>
+                <a href="#"><img src="{% static 'images/home_awards.webp' %}"></a>
                 <div class = "content">
                     <h3>Activism</h3>
                     <h4>Jane Fonda Champions Climate Action for Every Generation</h4>
@@ -144,7 +145,7 @@
                 </div>
             </div>
             <div class = "article">
-                <a href="#"><img src="../static/images/home_awards.webp"></a>
+                <a href="#"><img src="{% static 'images/home_awards.webp' %}"></a>
                 <div class = "content">
                     <h3>Activism</h3>
                     <h4>Jane Fonda Champions Climate Action for Every Generation</h4>
@@ -152,7 +153,7 @@
                 </div>
             </div>
             <div class = "article">
-                <a href="#"><img src="../static/images/home_awards.webp"></a>
+                <a href="#"><img src="{% static 'images/home_awards.webp' %}"></a>
                 <div class = "content">
                     <h3>Activism</h3>
                     <h4>Jane Fonda Champions Climate Action for Every Generation</h4>

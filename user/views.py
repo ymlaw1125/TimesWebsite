@@ -21,13 +21,16 @@ def favorites(request):
 @login_required(login_url='/login/')
 def profile(request):
     assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'profile.html',
-        {
-            'title': 'Profile'
-        }
-    )
+    if request.method == 'GET':
+        return render(request, 'profile.html', {'title': 'Profile'})
+    else:
+        form = EditProfileForm(request.POST)
+        if form.is_valid():
+            user = request.user
+            user.first_name = form.cleaned_data.get('first_name')
+            user.last_name = form.cleaned_data.get('last_name')
+            user.save()
+        return render(request, 'profile.html', {'title': 'Profile', 'form': form})
 
 
 @login_required(login_url='/login/')
@@ -63,6 +66,7 @@ def login(request):
         return render(request, 'login.html', {'title': 'Log In'})
     else:
         form = LoginForm(request.POST)
+        print(form.is_bound)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
@@ -71,7 +75,7 @@ def login(request):
                 django_login(request, user)
                 return redirect('home')
             else:
-                form.add_error('username', 'Username or password is incorrect.')
+                form.errors['username'] = ['Username or password is incorrect.']
                 return render(request, 'login.html', {'title': 'Log In', 'form': form})
         else:
             return render(request, 'login.html', {'title': 'Log In', 'form': form})
