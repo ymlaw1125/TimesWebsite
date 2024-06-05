@@ -10,14 +10,30 @@
             </div>
             <div class="col-6">
                 <h2>{{ magazine.title }}</h2>
-                <h5>{{ magazine.upload_time.date }}</h5>
-                <p class="my-5"><strong>Love is the meaning of life....</strong></p>
+                <h5>{{ magazine.upload_date.date }}</h5>
+                <div class="my-5">
+                    <h4 style="color: gray;">KEY HIGHLIGHTS</h4>
+                    <div class="row">
+                        <div class="col-4 text-dark row py-3 text-decoration-none">
+                                <img src="/media/{{ magazine.img1 }}" alt="Image" class="col-12">
+                                <span class="col-12">{{magazine.t1}}</span>
+                        </div>
+                        <div class="col-4 text-dark row py-3 text-decoration-none">
+                                <img src="/media/{{ magazine.img2 }}" alt="Image" class="col-12">
+                                <span class="col-12">{{magazine.t2}}</span>
+                        </div>
+                        <div class="col-4 text-dark row py-3 text-decoration-none">
+                                <img src="/media/{{ magazine.img3 }}" alt="Image" class="col-12">
+                                <span class="col-12">{{magazine.t3}}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-2">
                 <form method="post" action="{% url 'magazine_favorite' magazine_id=magazine.id %}" class="btn-group-vertical">
                 {% csrf_token %}
                     <input type="hidden" name="next" value="{{ request.path }}">
-                    <a class="btn btn-danger my-2" href="/media/{{ magazine.document }}">Read Now<i class="bi bi-book ps-1"></i></a>
+                    <a class="btn btn-danger my-2" target="_blank" href="/media/{{ magazine.document }}">Read Now<i class="bi bi-book ps-1"></i></a>
                     <button class="btn my-2 action-btn {% if magazine in user.favorites.all %}btn-primary{% else %}btn-outline-primary{% endif %}">{% if magazine in user.favorites.all %}Unfavorite{% else %}Favorite{% endif %} Magazine ({{ magazine.saved_users.count }})<i class="bi bi-bookmark-heart ps-1"></i></button>
                     <a class="btn btn-dark my-2" download="" href="/media/{{ magazine.document }}">Download<i class="bi bi-download ps-1"></i></a>
                     <a type="button" class="btn btn-info my-2" href="/">Back</a>
@@ -25,12 +41,12 @@
             </div>
         </div>
         <div class="row">
-            <!--<h1>EXPLORE MORE</h1>-->
+            <h1>EXPLORE MORE</h1>
             {% for issue in recent_issues %}
                 <a class="col text-center text-dark row py-3 text-decoration-none" href="{% url 'magazine' issue.id %}">
                     <img src="/media/{{ issue.cover }}" alt="Image" class="col-12">
-                    <span class="col-12">{{ issue.upload_time.date }}</span>
                     <span class="col-12">{{ issue.title }}</span>
+                    <span class="col-12">{{ issue.upload_date.date }}</span>
                 </a>
             {% endfor %}
             </a>
