@@ -1,7 +1,8 @@
-from django.shortcuts import render, reverse, redirect
+from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.http import HttpResponse, HttpRequest
 from django.http import HttpRequest
 from django.shortcuts import render, reverse, redirect
+from django.views.generic import RedirectView
 from .models import Magazine
 from magazines import forms
 from datetime import datetime
@@ -51,3 +52,23 @@ def library(request):
             "magazines": magazines,
         }
     )
+
+
+class MagazineFavoriteView(RedirectView):
+    pattern_name = "magazine_detail"
+
+    def get_redirect_url(self, *args, **kwargs):
+        url = self.request.POST.get("next", None)
+        if url:
+            return url
+        else:
+            return super().get_redirect_url(*args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        _id = self.kwargs.get("magazine_id", None)
+        print(_id)
+        if request.user.has_favorited(_id):
+            request.user.remove_favorite(_id)
+        else:
+            request.user.add_favorite(_id)
+        return super().post(request, *args, **kwargs)

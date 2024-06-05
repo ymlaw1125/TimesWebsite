@@ -3,7 +3,6 @@ from django.db import models
 from django.db.models import Q
 from magazines.models import Magazine
 
-
 class CustomUserManager(BaseUserManager):
     def _create_user(self, username, password, email, **kwargs):
         if not username:
@@ -49,13 +48,19 @@ class CustomUser(AbstractUser):
         self.favorites = favorites
 
     def add_favorite(self, magazine_id):
-        if (Magazine.objects.filter(id=magazine_id).exists() and magazine_id not in
-                self.favorites['id']):
-            self.favorites['id'].append(magazine_id)
+        if Magazine.objects.filter(id=magazine_id).exists() and Magazine.objects.get(id=magazine_id) not in self.favorites.all():
+            self.favorites.add(Magazine.objects.get(id=magazine_id))
 
     def remove_favorite(self, magazine_id):
-        if Magazine.objects.filter(id=magazine_id).exists() and magazine_id in self.favorites['id']:
-            self.favorites['id'].remove(magazine_id)
+        if Magazine.objects.filter(id=magazine_id).exists() and Magazine.objects.get(id=magazine_id) in self.favorites.all():
+            self.favorites.remove(Magazine.objects.get(id=magazine_id))
+
+    def has_favorited(self, magazine_id):
+        print(Magazine.saved_users)
+        if Magazine.objects.filter(id=magazine_id).exists() and Magazine.objects.get(id=magazine_id) in self.favorites.all():
+            return True
+        else:
+            return False
 
     def get_full_name(self):
         return self.username

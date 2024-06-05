@@ -9,11 +9,13 @@ User = get_user_model()
 
 def favorites(request):
     assert isinstance(request, HttpRequest)
+    favorite = request.user.favorites.all()
     return render(
         request,
         'user_lib.html',
         {
-            'title': 'Favorites'
+            'title': 'Favorites',
+            "favorites": favorite,
         }
     )
 

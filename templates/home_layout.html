@@ -1,9 +1,14 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div class = 'row'>
-        <a class='btn col-3 ms-auto' href="../../magazine/"><h4>Magazines</h4></a>
-        <a class='btn col-3 me-auto' href="../../profile/favorites/"><h4>My Library</h4></a>
-        <button class="btn col-1 me-0"><i class="bi bi-search"></i></button>
+    <div class="container-fluid">
+        <div class = 'row'>
+            <div class="col-12 text-center">
+                <a class='btn d-inline-block mx-3 {% if request.path == "/magazine/" %}text-danger{% endif %}' href="../../magazine/"><h4>Magazines</h4></a>
+                <a class='btn d-inline-block mx-3 {% if request.path == "/profile/favorites/" %}text-danger{% endif %}' href="../../profile/favorites/"><h4>My Library</h4></a>
+                <button class="btn" style="position: absolute; right: 0;"><i class="bi bi-search"></i></button>
+            </div>
+
+        </div>
     </div>
 {% block content2 %}{% endblock %}
 {% endblock %}

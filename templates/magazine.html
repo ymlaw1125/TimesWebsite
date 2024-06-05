@@ -14,11 +14,14 @@
                 <p class="my-5"><strong>Love is the meaning of life....</strong></p>
             </div>
             <div class="col-2">
-                <div class="btn-group-vertical">
-                    <a class="btn btn-danger my-2" href="/media/{{ magazine.document }}">Read Now</a>
-                    <a class="btn btn-dark my-2" download="" href="/media/{{ magazine.document }}">Save As</a>
-                    <a type="button" class="btn btn-info my-2" href="{{ request.META.HTTP_REFERER }}">Back</a>
-                </div>
+                <form method="post" action="{% url 'magazine_favorite' magazine_id=magazine.id %}" class="btn-group-vertical">
+                {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <a class="btn btn-danger my-2" href="/media/{{ magazine.document }}">Read Now<i class="bi bi-book ps-1"></i></a>
+                    <button class="btn my-2 action-btn {% if magazine in user.favorites.all %}btn-primary{% else %}btn-outline-primary{% endif %}">{% if magazine in user.favorites.all %}Unfavorite{% else %}Favorite{% endif %} Magazine ({{ magazine.saved_users.count }})<i class="bi bi-bookmark-heart ps-1"></i></button>
+                    <a class="btn btn-dark my-2" download="" href="/media/{{ magazine.document }}">Download<i class="bi bi-download ps-1"></i></a>
+                    <a type="button" class="btn btn-info my-2" href="/">Back</a>
+                </form>
             </div>
         </div>
         <div class="row">
