@@ -3,11 +3,39 @@ from django.http import HttpResponse, HttpRequest
 from django.http import HttpRequest
 from django.shortcuts import render, reverse, redirect
 from django.views.generic import RedirectView
+from django.contrib.auth import get_user_model
 from .models import Magazine
 from magazines import forms
 from datetime import datetime
 from django.db.models import Q
-
+# email imports
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.header import Header
+User = get_user_model()
+def send_email(sender, addr, port, receiver, secret, header, body):
+    # 1. 连接邮箱服务器
+    con = smtplib.SMTP_SSL(addr, port)
+    # 2. 登录邮箱
+    con.login(sender, secret)
+    # 2. 准备数据
+    # 创建邮件对象
+    msg = MIMEMultipart()
+    # 设置邮件主题
+    subject = Header(header, 'utf-8').encode()
+    msg['Subject'] = subject
+    # 设置邮件发送者
+    msg['From'] = sender + "<" + sender + ">"
+    # 设置邮件接受者
+    msg['To'] = receiver
+    # 添加⽂文字内容
+    text = MIMEText(body, 'plain', 'utf-8')
+    msg.attach(text)
+    # 3.发送邮件
+    con.sendmail(sender, receiver, msg.as_string())
+    print("Success")
+    con.quit()
 
 def home(request):
     assert isinstance(request, HttpRequest)
@@ -17,8 +45,12 @@ def home(request):
         if request.POST.get("form_type") == 'addMagazine':
             form = forms.MagazineForm(request.POST, request.FILES)
             if form.is_valid():
-                print("success")
+                print("magazine add success")
                 form.save()
+                for user in User.objects.filter(subscribe=True):
+                    email = user.email
+                    # TODO - change header and content
+                    send_email('ymlaw1125@163.com', 'smtp.163.com', 465, email, 'ECIJLSHSVZDEBGYF', 'test header', 'test body')
             else:
                 print(form)
                 print(request.POST)
