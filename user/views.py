@@ -1,3 +1,5 @@
+import json
+
 from django.http import HttpRequest, JsonResponse
 from django.shortcuts import render, reverse, redirect
 from django.contrib.auth import (get_user_model, logout as django_logout, login as django_login,
@@ -101,11 +103,16 @@ def signup(request):
         return render(request, 'signup.html', {'title': 'Sign Up'})
     else:
         form = SignupForm(request.POST)
+        if 'subscribe' not in request.POST:
+            subscribe = False
+        else:
+            subscribe = True
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             email = form.cleaned_data['email']
-            User.objects.create_user(username=username, password=password, email=email)
+            User.objects.create_user(username=username, password=password, email=email, subscribe=subscribe)
             return redirect('login')
         else:
+            print(form)
             return render(request, 'signup.html', {'title': 'Sign Up', 'form': form})
