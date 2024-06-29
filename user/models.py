@@ -36,6 +36,7 @@ class CustomUser(AbstractUser):
     favorites = models.ManyToManyField(to=Magazine,
                                        related_name='saved_users',
                                        blank=True)
+    subscribe = models.BooleanField(default=False)
     objects = CustomUserManager()
 
     def __str__(self):
