@@ -87,42 +87,28 @@
                 <button class="btn btn-light btn-lg" data-bs-toggle="modal" data-bs-target="#removeMagazineForm"><b>Remove Magazine</b></button>
                 <div class="modal fade" id="removeMagazineForm"
                      tabindex="-1" aria-hidden="true"
-                     aria-labelledby="removedataFormLabel">
+                     aria-labelledby="dataFormLabel">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="removedataFormLabel">Rremove Magazine</h5>
+                                <h5 class="modal-title" id="dataFormLabel">Remove Magazine</h5>
                                 <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="close"></button>
                             </div>
                             <div class="modal-body">
                                 <form method="post" id="removeMagazine" class="form-horizontal" name="dataForm" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <input type="hidden" name="form_type" value="removeMagazine" />
-                                    <div class="form-group text-start">
-                                        <label for="remove_title">Title</label>
-                                        <input type="text" id="remove_title" class="form-control" name="title" placeholder="Enter Magazine Title" />
-                                    </div>
-                                    <div class="form-group text-start">
-                                        <label for="genre">Genre</label>
-                                        <select class="form-select" name="genre" id="genre">
-                                            <option value="horror">Horror</option>
-                                            <option value="comedy">Comedy</option>
+                                    <select class="form-select" name="Magazine">
+                                            <option selected disabled>Please select a magazine</option>
+                                            {% for magazine in magazines %}
+                                                <option value="{{ magazine.id }}">{{ magazine.title }}</option>
+                                            {% endfor %}
                                         </select>
-                                    </div>
-                                    <div class="form-group text-start">
-                                        <label for="publisher">Publisher</label>
-                                        <input type="text" id="publisher" class="form-control" name="publisher" placeholder="Enter Magazine Publisher" />
-                                    </div>
-                                    <div class="form-group text-start">
-                                        <label for="document">Select Magazine Document </label>
-                                        <input class="form-control" id="document"
-                                               name="document" type="file"/>
-                                    </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn-secondary btn" data-bs-dismiss="modal">Close</button>
-                                <button class="btn btn-primary" type="submit" form="addData">Add</button>
+                                <button class="btn btn-primary" type="submit" form="removeMagazine">Remove</button>
                             </div>
                         </div>
                     </div>
@@ -134,6 +120,7 @@
         <div class="banner">
             <a href="/login/"><img src="{% static 'images/home_banner.png' %}" alt="Banner Image"></a>
         </div>
+
 
         <div class = "heading">
             <h2>Recent Issues</h2>

@@ -40,7 +40,7 @@ def send_email(sender, addr, port, receiver, secret, header, body):
 def home(request):
     assert isinstance(request, HttpRequest)
     magazines = Magazine.objects.order_by('-upload_date')[:3]
-
+    all_mags = Magazine.objects.all()
     if request.method == 'POST':
         if request.POST.get("form_type") == 'addMagazine':
             form = forms.MagazineForm(request.POST, request.FILES)
@@ -55,7 +55,10 @@ def home(request):
                 print(form)
                 print(request.POST)
                 print(request.FILES)
-    return render(request, 'index.html', {"title": "Home", "recent_issues": magazines, })
+        elif request.POST.get("form_type") == 'removeMagazine':
+            magazine_id = request.POST['Magazine']
+            Magazine.objects.filter(id=magazine_id).delete()
+    return render(request, 'index.html', {"title": "Home", "recent_issues": magazines, 'magazines': all_mags})
 
 
 def magazine(request, magazine_id):
