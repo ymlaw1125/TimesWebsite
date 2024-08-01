@@ -49,7 +49,7 @@ def home(request):
                 form.save()
                 for user in User.objects.filter(subscribe=True):
                     email = user.email
-                    # TODO - change header and content
+                    # TODO - change email header and content
                     send_email('ymlaw1125@163.com', 'smtp.163.com', 465, email, 'ECIJLSHSVZDEBGYF', 'test header', 'test body')
             else:
                 print(form)
@@ -79,12 +79,31 @@ def magazine(request, magazine_id):
 def library(request):
     assert isinstance(request, HttpRequest)
     magazines = Magazine.objects.all()
+    searched = ''
+    if request.method == 'GET':
+        if request.GET.get("form_type") == 'search':
+            query = request.GET['query']
+            if len(query) != 0:
+                searched = query
+                query_in_list = query.split()
+                to_ignore = ['a', 'an', 'and', 'are', 'as', 'at', 'be', 'but', 'by', 'for', 'if', 'in', 'into', 'is', 'it', 'no', 'not', 'of', 'on', 'or', 'such', 'that', 'the', 'their', 'then', 'there', 'these', 'they', 'this', 'to', 'was', 'will', 'with']
+                filtered_query = [e for e in query_in_list if e not in to_ignore]
+                results = []
+                for item in filtered_query:
+                    mags = Magazine.objects.filter(
+                        Q(title__icontains=item)
+                    )
+                    for mag in mags:
+                        if mag not in results:
+                            results.append(mag)
+                magazines = results
     return render(
         request,
         'library.html',
         {
             "title": "Library",
             "magazines": magazines,
+            "searched": searched
         }
     )
 

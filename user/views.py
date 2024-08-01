@@ -1,5 +1,6 @@
 import json
 
+from django.db.models import Q
 from django.http import HttpRequest, JsonResponse
 from django.shortcuts import render, reverse, redirect
 from django.contrib.auth import (get_user_model, logout as django_logout, login as django_login,
@@ -11,13 +12,33 @@ User = get_user_model()
 
 def favorites(request):
     assert isinstance(request, HttpRequest)
+    searched = ''
     favorite = request.user.favorites.all()
+    print(favorite)
+    if request.method == 'GET':
+        if request.GET.get("form_type") == 'search':
+            query = request.GET['query']
+            if len(query) != 0:
+                searched = query
+                query_in_list = query.split()
+                to_ignore = ['a', 'an', 'and', 'are', 'as', 'at', 'be', 'but', 'by', 'for', 'if', 'in', 'into', 'is', 'it', 'no', 'not', 'of', 'on', 'or', 'such', 'that', 'the', 'their', 'then', 'there', 'these', 'they', 'this', 'to', 'was', 'will', 'with']
+                filtered_query = [e for e in query_in_list if e not in to_ignore]
+                results = []
+                for item in filtered_query:
+                    mags = favorite.filter(
+                        Q(title__icontains=item)
+                    )
+                    for mag in mags:
+                        if mag not in results:
+                            results.append(mag)
+                favorite = results
     return render(
         request,
         'user_lib.html',
         {
             'title': 'Favorites',
             "favorites": favorite,
+            "searched": searched
         }
     )
 
