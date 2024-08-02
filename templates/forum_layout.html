@@ -1,0 +1,131 @@
+{% extends 'layout.html' %}
+{% block header %}
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../static/content/forum_layout.css">
+{% endblock %}
+{% block content %}
+    <div class="main">
+        <div class="sidebar">
+            <div class="top">
+                <div class="logo">
+                    <span>SHSIDTimes</span>
+                </div>
+                <i class="bx bx-menu" id="btn"></i>
+            </div>
+            <ul>
+                <li>
+                    <a href="#">
+                        <i class="bx bxs-home"></i>
+                        <span class="nav-item">Home</span>
+                    </a>
+                    <span class="tooltip">Home</span>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="#">
+                        <i class="bx bxs-hot"></i>
+                        <span class="nav-item">Popular</span>
+                    </a>
+                    <span class="tooltip">Popular</span>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="#">
+                        <i class="bx bxs-grid-alt"></i>
+                        <span class="nav-item">All</span>
+                    </a>
+                    <span class="tooltip">All</span>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="#">
+                        <i class="bx bxs-edit-alt"></i>
+                        <span class="nav-item">Create</span>
+                    </a>
+                    <span class="tooltip">Create</span>
+                </li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="navigation">
+                <li class="tab-btn">News</li>
+                <li class="tab-btn">Lifestyle</li>
+                <li class="tab-btn">Literature</li>
+                <li class="tab-btn">Science & Technology</li>
+                <li class="tab-btn">Games</li>
+                <li class="tab-btn">Popular</li>
+                </ul>
+            </div>
+        </div>
+        <div class="menu">
+            <div class="container">
+                <h1>Notifications</h1>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="bx bxs-inbox"></i>
+                            <span class="nav-item">Inbox</span>
+                            <span class="number">5</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="bx bxs-paper-plane"></i>
+                            <span class="nav-item">My Feeds</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="bx bxs-heart"></i>
+                            <span class="nav-item">Favourites</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <hr>
+            <div class="container">
+                <h1>Posts</h1>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="bx bxs-book-open"></i>
+                            <span class="nav-item">Article 1</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="bx bxs-book-open"></i>
+                            <span class="nav-item">Article 2</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="bx bxs-book-open"></i>
+                            <span class="nav-item">Article 3</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+<script>
+    let btn = document.querySelector('#btn')
+    let sidebar = document.querySelector('.sidebar')
+    btn.onclick = function () {
+        sidebar.classList.toggle('active');
+    };
+</script>
+{% endblock %}
