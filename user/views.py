@@ -10,10 +10,19 @@ from django.contrib.auth.decorators import login_required
 User = get_user_model()
 
 
-def favorites(request):
+@login_required(login_url='/login/')
+def favorites(request, username):
     assert isinstance(request, HttpRequest)
+    viewed_user = CustomUser.objects.filter(username=username).first()
+    if viewed_user is None:
+        return render(
+            request, 'error.html', {
+                'title': 'User does not exist',
+                'error_msg': 'Oops... user does not exist'
+            }
+        )
     searched = ''
-    favorite = request.user.favorites.all()
+    favorite = viewed_user.magazine_favorites.all()
     print(favorite)
     if request.method == 'GET':
         if request.GET.get("form_type") == 'search':
@@ -44,10 +53,11 @@ def favorites(request):
 
 
 @login_required(login_url='/login/')
-def profile(request):
+def profile(request, username):
     assert isinstance(request, HttpRequest)
+    viewed_user = CustomUser.objects.filter(username=username).first()
     if request.method == 'GET':
-        return render(request, 'profile.html', {'title': 'Profile'})
+        return render(request, 'profile.html', {'title': 'Profile', 'viewed_user': viewed_user})
     else:
         form = EditProfileForm(request.POST)
         if form.is_valid():
@@ -55,14 +65,15 @@ def profile(request):
             user.first_name = form.cleaned_data.get('first_name')
             user.last_name = form.cleaned_data.get('last_name')
             user.save()
-        return render(request, 'profile.html', {'title': 'Profile', 'form': form})
+        return render(request, 'profile.html', {'title': 'Profile', 'form': form, 'viewed_user': viewed_user})
 
 
 @login_required(login_url='/login/')
 def reset_password(request):
     assert isinstance(request, HttpRequest)
+    viewed_user = CustomUser.objects.filter(username=request.user.username).first()
     if request.method == 'GET':
-        return render(request, 'reset_pwd.html', {'title': 'Reset Password'})
+        return render(request, 'reset_pwd.html', {'title': 'Reset Password', 'viewed_user': viewed_user})
     else:
         form = PasswordResetForm(request.POST)
         if form.is_valid():
@@ -77,7 +88,7 @@ def reset_password(request):
                 form.add_error('old_pwd', 'Old password is incorrect')
                 return render(request, 'reset_pwd.html', {'title': 'Reset Password', 'form': form})
         else:
-            return render(request, 'reset_pwd.html', {'title': 'Reset Password', 'form': form})
+            return render(request, 'reset_pwd.html', {'title': 'Reset Password', 'form': form, 'viewed_user': viewed_user})
 
 
 def login(request):
@@ -111,6 +122,7 @@ def logout(request):
     assert isinstance(request, HttpRequest)
     django_logout(request)
     if request.META.get('HTTP_REFERER') is not None:
+        print(request.META.get("HTTP_REFERER"))
         return redirect(request.META.get('HTTP_REFERER'))
     else:
         return redirect(reverse('home'))
@@ -119,7 +131,10 @@ def logout(request):
 def signup(request):
     assert isinstance(request, HttpRequest)
     if request.user.is_authenticated:
-        return redirect(reverse('home'))
+        if request.META.get('HTTP_REFERER') is not None:
+            return redirect(request.META.get('HTTP_REFERER'))
+        else:
+            return redirect(reverse('home'))
     if request.method == 'GET':
         return render(request, 'signup.html', {'title': 'Sign Up'})
     else:
@@ -129,10 +144,13 @@ def signup(request):
         else:
             subscribe = True
         if form.is_valid():
+            print(form)
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             email = form.cleaned_data['email']
-            User.objects.create_user(username=username, password=password, email=email, subscribe=subscribe)
+            User.objects.create_user(first_name=first_name, last_name=last_name, username=username, password=password, email=email, subscribe=subscribe)
             return redirect('login')
         else:
             print(form)

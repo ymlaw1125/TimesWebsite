@@ -2,6 +2,8 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager, Permission
 from django.db import models
 from django.db.models import Q
 from magazines.models import Magazine
+from forum.models import Posts
+
 
 class CustomUserManager(BaseUserManager):
     def _create_user(self, username, password, email, **kwargs):
@@ -33,32 +35,68 @@ class CustomUserManager(BaseUserManager):
 
 # Create your models here.
 class CustomUser(AbstractUser):
-    favorites = models.ManyToManyField(to=Magazine,
-                                       related_name='saved_users',
-                                       blank=True)
+    magazine_favorites = models.ManyToManyField(
+        to=Magazine,
+        related_name='saved_users',
+        blank=True
+    )
+    post_likes = models.ManyToManyField(
+        to=Posts,
+        related_name='liked_users',
+        blank=True
+    )
     subscribe = models.BooleanField(default=False)
     objects = CustomUserManager()
 
     def __str__(self):
         return self.username
 
-    def get_favorites(self):
-        return self.favorites
+    # magazine
+    def get_magazine_favorites(self):
+        return self.magazine_favorites
 
-    def set_favorites(self, favorites):
-        self.favorites = favorites
+    def set_magazine_favorites(self, magazine_favorites):
+        self.magazine_favorites = magazine_favorites
 
-    def add_favorite(self, magazine_id):
-        if Magazine.objects.filter(id=magazine_id).exists() and Magazine.objects.get(id=magazine_id) not in self.favorites.all():
-            self.favorites.add(Magazine.objects.get(id=magazine_id))
+    def add_magazine_favorite(self, magazine_id):
+        if Magazine.objects.filter(id=magazine_id).exists() and Magazine.objects.get(
+                id=magazine_id) not in self.magazine_favorites.all():
+            self.magazine_favorites.add(Magazine.objects.get(id=magazine_id))
 
-    def remove_favorite(self, magazine_id):
-        if Magazine.objects.filter(id=magazine_id).exists() and Magazine.objects.get(id=magazine_id) in self.favorites.all():
-            self.favorites.remove(Magazine.objects.get(id=magazine_id))
+    def remove_magazine_favorite(self, magazine_id):
+        if Magazine.objects.filter(id=magazine_id).exists() and Magazine.objects.get(
+                id=magazine_id) in self.magazine_favorites.all():
+            self.magazine_favorites.remove(Magazine.objects.get(id=magazine_id))
 
-    def has_favorited(self, magazine_id):
+    def has_magazine_favorited(self, magazine_id):
         print(Magazine.saved_users)
-        if Magazine.objects.filter(id=magazine_id).exists() and Magazine.objects.get(id=magazine_id) in self.favorites.all():
+        if Magazine.objects.filter(id=magazine_id).exists() and Magazine.objects.get(
+                id=magazine_id) in self.magazine_favorites.all():
+            return True
+        else:
+            return False
+        
+    # posts    
+    def get_post_likes(self):
+        return self.post_likes
+
+    def set_post_likes(self, post_likes):
+        self.post_likes = post_likes
+
+    def add_post_like(self, post_id):
+        if Posts.objects.filter(id=post_id).exists() and Posts.objects.get(
+                id=post_id) not in self.post_likes.all():
+            self.post_likes.add(Posts.objects.get(id=post_id))
+
+    def remove_post_like(self, post_id):
+        if Posts.objects.filter(id=post_id).exists() and Posts.objects.get(
+                id=post_id) in self.post_likes.all():
+            self.post_likes.remove(Posts.objects.get(id=post_id))
+
+    def has_post_liked(self, post_id):
+        print(Posts.liked_users)
+        if Posts.objects.filter(id=post_id).exists() and Posts.objects.get(
+                id=post_id) in self.post_likes.all():
             return True
         else:
             return False

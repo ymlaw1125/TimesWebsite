@@ -121,8 +121,8 @@ class MagazineFavoriteView(RedirectView):
     def post(self, request, *args, **kwargs):
         _id = self.kwargs.get("magazine_id", None)
         print(_id)
-        if request.user.has_favorited(_id):
-            request.user.remove_favorite(_id)
+        if request.user.has_magazine_favorited(_id):
+            request.user.remove_magazine_favorite(_id)
         else:
-            request.user.add_favorite(_id)
+            request.user.add_magazine_favorite(_id)
         return super().post(request, *args, **kwargs)

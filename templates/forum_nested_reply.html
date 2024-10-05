@@ -1,0 +1,94 @@
+{% load custom_filters forum_concat forum_filter filter_votetype forum_sub %}
+<div class="comment-section">
+    {% for comment in comments %}
+        <div class="comment">
+            <div class="comment-header"><a href="/{{ comment.user }}/profile/" style="text-decoration: none; color: black;"><b>{{ comment.user }}</b></a> • {{ comment.created_at|time_since }}</div>
+            <div class="comment-content">{{ comment.message }}</div>
+            <div class="comment-footer">
+                <div id="comment_{{ comment.id }}_votes" class="vote-container" {% if user.is_authenticated %} style="background-color: {% if not comment.votes|filter:user %}#e9edef{% elif comment.votes|votetype:user %}green{% else %}red{% endif %}{% endif %}">
+                    <button class="vote-button upvote" onclick="{% if user.is_authenticated %}vote_{{ comment.id }}_Comment({{ comment.id }}, 1){% else %}location.href='/login/'{% endif %}">
+                        <i class='bx bx-upvote'></i>
+                    </button>
+                    <div class="vote-count" id="comment_{{ comment.id }}_count">{{ comment.upvotes|subtract:comment.downvotes}}</div>
+                    <button class="vote-button downvote" onclick="{% if user.is_authenticated %}vote_{{ comment.id }}_Comment({{ comment.id }}, 0){% else %}location.href='/login'{% endif %}">
+                        <i class='bx bx-downvote'></i>
+                    </button>
+                </div>
+            {% if request.user.is_authenticated %}
+                {% if request.path != "/forum/"|concat:post.community|concat:"/"|concat:post.id %}
+                    <button class="reply-button" onclick="document.location.href='/forum/{{ post.community }}/{{ post.id }}'"><i class='bx bx-message'></i> <span id="reply-count">Reply</span></button>
+                {% else %}
+                    <button class="reply-button" onclick="toggleReplySection(this)"><i class='bx bx-message'></i> <span id="reply-count">Reply</span></button>
+                {% endif %}
+            {% else %}
+                <button class="reply-button" onclick="location.href='/login/'"><i class='bx bx-message'></i> <span id="reply-count">Reply</span></button>
+            {% endif %}
+            </div>
+
+            <!-- Nested reply section -->
+            <div class="reply-section">
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_type" value="replyForm">
+                    <input type="hidden" name="post" value="{{ post.id }}">
+                    <input type="hidden" name="user" value="{{ user.id }}">
+                    <input type="hidden" name="parent" value="{{ comment.id }}">
+                    <textarea placeholder="Write a comment..." name="message"></textarea>
+                    <button class="submit-reply" type="submit">Comment</button>
+                </form>
+            </div>
+            <div class="reply-section">
+                <textarea placeholder="Write a reply..."></textarea>
+                <button class="submit-reply">Submit</button>
+            </div>
+            {% if comment.replies.all %}
+                {% include 'forum_nested_reply.html' with comments=comment.replies.all %}
+            {% endif %}
+        </div>
+        <script type="text/javascript">
+            function vote_{{ comment.id }}_Comment(comment_id, vote_type){
+                var data = {
+                        "csrfmiddlewaretoken": '{{ csrf_token }}',
+                        "comment": comment_id,
+                        "user": '{{ request.user.id }}',
+                };
+                if (vote_type){
+                    data["vote_type"] = vote_type;
+                }
+                $.ajax({
+                    url: "/forum/vote/comment/" + comment_id + "/" + vote_type + "/",
+                    method: "post",
+                    data: data,
+                    success: function(response){
+                        $('#comment_{{ comment.id }}_count').text(response.upvotes - response.downvotes);
+                        if (vote_type){
+                            if (response.changed){
+                                $('#comment_{{ comment.id }}_votes').css(
+                                    "background-color", "green"
+                                );
+                            } else {
+                                $('#comment_{{ comment.id }}_votes').css(
+                                    "background-color", "#e9edef"
+                                );
+                            }
+                        }
+                        else {
+                            if (response.changed){
+                                $('#comment_{{ comment.id }}_votes').css(
+                                    "background-color", "red"
+                                );
+                            } else {
+                                $('#comment_{{ comment.id }}_votes').css(
+                                    "background-color", "#e9edef"
+                                );
+                            }
+                        }
+                    },
+                    error: function(data){
+                        alert(data);
+                    }
+                })
+            }
+        </script>
+    {% endfor %}
+</div>

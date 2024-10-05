@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% load forum_concat %}
 {% block header %}
 
 {% endblock %}
@@ -6,8 +7,9 @@
     <div class="container-fluid">
         <div class='row'>
             <div class="col-12 text-center">
-                <a class='btn d-inline-block mx-3 {% if request.path == "/magazine/" %}text-danger{% endif %}' href="../../magazine/"><h4>Magazines</h4></a>
-                <a class='btn d-inline-block mx-3 {% if request.path == "/profile/favorites/" %}text-danger{% endif %}' href="../../profile/favorites/"><h4>My Library</h4></a>
+                <a class='btn d-inline-block mx-3 {% if request.path == "/magazine/" %}text-danger{% endif %}' href="/magazine/"><h4>Magazines</h4></a>
+                <a class='btn d-inline-block mx-3 {% if request.path == "/"|concat:request.user.username|concat:"/profile/favorites/" %}text-danger{% endif %}' href="{% if request.user.is_authenticated %}/{{ request.user.username }}/profile/favorites/{% else %}/login/{% endif %}"><h4>
+                    My Library</h4></a>
 
             </div>
 
@@ -15,7 +17,6 @@
        <div class="row">
         <div class="col-md-4 offset-md-4 my-3">
           <form method="GET" class="input-group search-container">
-              {% csrf_token %}
             <input type="hidden" name="form_type" value="search" />
             <input value="{{ searched }}" type="text" name="query" class="form-control" placeholder="Search..." aria-label="Search for...">
             <div class="input-group-append">

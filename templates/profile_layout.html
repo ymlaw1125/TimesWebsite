@@ -35,10 +35,15 @@
     </style>
 {% endblock %}
 {% block content %}
+    {% if viewed_user %}
     <div class="sidebar">
-        <a class="text-decoration-none" href="/profile/">Personal Details</a>
+        <a class="text-decoration-none" href="/{{ request.user.username }}/profile/">Personal Details</a>
+        {% if request.user == viewed_user %}
         <a class="text-decoration-none" href="/resetpassword/">Reset Password</a>
         <a class="text-decoration-none" href="/logout/">Logout</a>
+        {% endif %}
     </div>
+    {% endif %}
     {% block content2 %}{% endblock %}
+
 {% endblock %}

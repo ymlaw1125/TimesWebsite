@@ -6,6 +6,10 @@ from user.models import CustomUser
 
 
 class SignupForm(Form):
+    first_name = fields.CharField(
+        required=False
+    )
+    last_name = fields.CharField(required=False)
     username = fields.CharField(
         required=True,
         min_length=3,
@@ -33,6 +37,14 @@ class SignupForm(Form):
         }
     )
     password2 = fields.CharField(required=False)
+
+    def clean_first_name(self):
+        first_name = self.cleaned_data['first_name']
+        return first_name
+
+    def clean_last_name(self):
+        last_name = self.cleaned_data['last_name']
+        return last_name
 
     def clean_username(self):
         username = self.cleaned_data['username']

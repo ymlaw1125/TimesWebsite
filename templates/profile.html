@@ -1,17 +1,19 @@
 {% extends "profile_layout.html" %}
 {% block title %}{{ title }}{% endblock %}
 {% block content2 %}
+    {% if viewed_user %}
     <div class="content">
         <div class="card">
             <div class="card-body">
                 <h3 class="text-center mt-3">Personal Details</h3>
+                {% if request.user == viewed_user %}
                 <form class="mt-4" action="" method="post">
                     {% csrf_token %}
                     <div class="my-2">
                         <label for="f_name"><strong>First Name:</strong></label>
                         <input class="form-control" name="first_name"
                                value="{% if form.first_name is not None %}{{ form.first_name.value }}
-{% else %}{{ user.first_name }}{% endif %}"
+{% else %}{{ viewed_user.first_name }}{% endif %}"
                                id="f_name"/>
                         <div class="form-group">
                             {% if form.errors.first_name|length > 0 %}
@@ -25,7 +27,7 @@
                         <label for="l_name"><strong>Last Name:</strong></label>
                         <input class="form-control" name="last_name"
                                value="{% if form.last_name is not None %}{{ form.last_name.value }}
-{% else %}{{ user.last_name }}{% endif %}"
+{% else %}{{ viewed_user.last_name }}{% endif %}"
                                id="l_name"/>
                         <div class="form-group">
                             {% if form.errors.last_name|length > 0 %}
@@ -39,7 +41,42 @@
                         <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
                 </form>
+                {% else %}
+                    <div class="my-2">
+                        <label for="f_name"><strong>First Name:</strong></label>
+                        <input class="form-control" name="first_name"
+                               value="{% if form.first_name is not None %}{{ form.first_name.value }}
+{% else %}{{ viewed_user.first_name }}{% endif %}"
+                               id="f_name"/>
+                        <div class="form-group">
+                            {% if form.errors.first_name|length > 0 %}
+                                <div class="alert alert-danger" role="alert">
+                                    {{ form.errors.first_name.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="my-2">
+                        <label for="l_name"><strong>Last Name:</strong></label>
+                        <input class="form-control" name="last_name"
+                               value="{% if form.last_name is not None %}{{ form.last_name.value }}
+{% else %}{{ viewed_user.last_name }}{% endif %}"
+                               id="l_name"/>
+                        <div class="form-group">
+                            {% if form.errors.last_name|length > 0 %}
+                                <div class="alert alert-danger" role="alert">
+                                    {{ form.errors.last_name.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
+    {% else %}
+        <div class="text-center">
+            <h1>Oops... user does not exist</h1>
+        </div>
+    {% endif %}
 {% endblock %}

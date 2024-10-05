@@ -26,7 +26,7 @@ urlpatterns = [
     path('', home, name='home'),
     path('admin/', admin.site.urls),
     path('magazine/', include('magazines.urls')),
-    path('profile/', include('user.urls')),
+    path('<str:username>/profile/', include('user.urls')),
     path('forum/', include('forum.urls')),
     path('login/', login, name='login'),
     path('logout/', logout, name='logout'),

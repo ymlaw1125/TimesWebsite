@@ -1,0 +1,44 @@
+{% extends 'forum_layout.html' %}
+{% block header %}
+    <link rel="stylesheet" href="{% static 'content/newpost.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container2">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Create Post</h5>
+                <form method="post" id="newPost" name="postForm" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_type" value="addPosts" />
+                    <input type="hidden" name="user" value="{{ user.id }}">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" name="title" id="title" placeholder="Title" maxlength="300" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="community">Community</label>
+                        <select class="form-select" name="community">
+                            <option selected disabled>Please select a magazine</option>
+                            {% for community in communities %}
+                                <option value="{{ community }}">{{ community }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="body">Body</label>
+                        <textarea id="body" name="text" rows="6" placeholder="Body"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="file" accept="image/*" name="image" id="image" />
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn save-draft">Save Draft</button>
+                        <button type="submit" class="btn post" form="newPost">Post</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

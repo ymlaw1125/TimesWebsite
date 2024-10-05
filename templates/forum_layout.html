@@ -1,126 +1,161 @@
-{% extends 'layout.html' %}
-{% block header %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../static/content/forum_layout.css">
-{% endblock %}
-{% block content %}
+    <link rel="stylesheet" href="{% static 'content/forum_layout.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+    {% block header %}{% endblock %}
+</head>
+<body>
     <div class="main">
         <div class="sidebar">
-            <div class="top">
-                <div class="logo">
-                    <span>SHSIDTimes</span>
-                </div>
-                <i class="bx bx-menu" id="btn"></i>
+        <div class="top">
+            <div class="logo">
+                <a href="/" style="text-decoration: none; color: white"><span>SHSIDTimes</span></a>
             </div>
+            <i class="bx bx-menu" id="btn"></i>
+        </div>
+        <ul>
+            <li>
+                <a href="/forum/">
+                    <i class="bx bxs-home"></i>
+                    <span class="nav-item">Home</span>
+                </a>
+                <span class="tooltip">Home</span>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="/forum/popular/ ">
+                    <i class="bx bxs-hot"></i>
+                    <span class="nav-item">Popular</span>
+                </a>
+                <span class="tooltip">Popular</span>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="/forum/submit/">
+                    <i class="bx bxs-edit-alt"></i>
+                    <span class="nav-item">Create</span>
+                </a>
+                <span class="tooltip">Create</span>
+            </li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="navigation">
+            <a href="/forum/News/" style="text-decoration: none; color: black"><li class="tab-btn">News</li></a>
+            <a href="/forum/Lifestyle/" style="text-decoration: none; color: black"><li class="tab-btn">Lifestyle</li></a>
+            <a href="/forum/Literature/" style="text-decoration: none; color: black"><li class="tab-btn">Literature</li></a>
+            <a href="/forum/Science & Technology/" style="text-decoration: none; color: black"><li class="tab-btn">Science & Technology</li></a>
+            <a href="/forum/Games/" style="text-decoration: none; color: black"><li class="tab-btn">Games</li></a>
+            <a href="/forum/Popular/" style="text-decoration: none; color: black"><li class="tab-btn">Popular</li></a>
+        </div>
+        {% block content %}{% endblock %}
+    </div>
+    {% if user.is_authenticated %}
+        <div class="user-menu">
+            <button class="user-button">
+                {{ user.username }}
+            </button>
+            <div class="dropdown-content">
+                <a href="/{{ request.user.username }}/profile/">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                      <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"></path>
+                    </svg>
+                    Your profile
+                </a>
+                <div class="divider"></div>
+                <a href="/{{ request.user.username }}/profile/favorites/">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                      <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"></path>
+                    </svg>
+                    Your favorites
+                </a>
+                <div class="divider"></div>
+                <a href="/logout/">Log Out</a>
+            </div>
+        </div>
+    {% else %}
+        <ul class="auth-menu">
+            <li class="auth-item">
+                <a href="/login/">SIGN IN</a>
+            </li>
+            <li class="auth-item">
+                <a href="/signup" class="signup-btn">SIGN UP</a>
+            </li>
+        </ul>
+    {% endif %}
+    <!--
+    <div class="menu">
+        <div class="container">
+            <h1>Notifications</h1>
             <ul>
                 <li>
                     <a href="#">
-                        <i class="bx bxs-home"></i>
-                        <span class="nav-item">Home</span>
+                        <i class="bx bxs-inbox"></i>
+                        <span class="nav-item">Inbox</span>
+                        <span class="number">5</span>
                     </a>
-                    <span class="tooltip">Home</span>
                 </li>
             </ul>
             <ul>
                 <li>
                     <a href="#">
-                        <i class="bx bxs-hot"></i>
-                        <span class="nav-item">Popular</span>
+                        <i class="bx bxs-paper-plane"></i>
+                        <span class="nav-item">My Feeds</span>
                     </a>
-                    <span class="tooltip">Popular</span>
                 </li>
             </ul>
             <ul>
                 <li>
                     <a href="#">
-                        <i class="bx bxs-grid-alt"></i>
-                        <span class="nav-item">All</span>
+                        <i class="bx bxs-heart"></i>
+                        <span class="nav-item">Favourites</span>
                     </a>
-                    <span class="tooltip">All</span>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="#">
-                        <i class="bx bxs-edit-alt"></i>
-                        <span class="nav-item">Create</span>
-                    </a>
-                    <span class="tooltip">Create</span>
                 </li>
             </ul>
         </div>
-        <div class="main-content">
-            <div class="navigation">
-                <li class="tab-btn">News</li>
-                <li class="tab-btn">Lifestyle</li>
-                <li class="tab-btn">Literature</li>
-                <li class="tab-btn">Science & Technology</li>
-                <li class="tab-btn">Games</li>
-                <li class="tab-btn">Popular</li>
-                </ul>
-            </div>
-        </div>
-        <div class="menu">
-            <div class="container">
-                <h1>Notifications</h1>
-                <ul>
-                    <li>
-                        <a href="#">
-                            <i class="bx bxs-inbox"></i>
-                            <span class="nav-item">Inbox</span>
-                            <span class="number">5</span>
-                        </a>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <a href="#">
-                            <i class="bx bxs-paper-plane"></i>
-                            <span class="nav-item">My Feeds</span>
-                        </a>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <a href="#">
-                            <i class="bx bxs-heart"></i>
-                            <span class="nav-item">Favourites</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <hr>
-            <div class="container">
-                <h1>Posts</h1>
-                <ul>
-                    <li>
-                        <a href="#">
-                            <i class="bx bxs-book-open"></i>
-                            <span class="nav-item">Article 1</span>
-                        </a>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <a href="#">
-                            <i class="bx bxs-book-open"></i>
-                            <span class="nav-item">Article 2</span>
-                        </a>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <a href="#">
-                            <i class="bx bxs-book-open"></i>
-                            <span class="nav-item">Article 3</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+        <hr>
+        <div class="container">
+            <h1>Posts</h1>
+            <ul>
+                <li>
+                    <a href="#">
+                        <i class="bx bxs-book-open"></i>
+                        <span class="nav-item">Article 1</span>
+                    </a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="#">
+                        <i class="bx bxs-book-open"></i>
+                        <span class="nav-item">Article 2</span>
+                    </a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="#">
+                        <i class="bx bxs-book-open"></i>
+                        <span class="nav-item">Article 3</span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
-{% endblock %}
-{% block scripts %}
+    -->
+</div>
+    
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <script>
     let btn = document.querySelector('#btn')
     let sidebar = document.querySelector('.sidebar')
@@ -128,4 +163,6 @@
         sidebar.classList.toggle('active');
     };
 </script>
-{% endblock %}
+{% block scripts %}{% endblock %}
+
+</html>

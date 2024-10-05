@@ -35,7 +35,7 @@
                     <input type="hidden" name="next" value="{{ request.path }}">
                     <a class="btn btn-danger my-2" target="_blank" href="/media/{{ magazine.document }}">Read Now<i class="bi bi-book ps-1"></i></a>
                     {% if user.is_authenticated %}
-                        <button class="btn my-2 action-btn {% if magazine in user.favorites.all %}btn-primary{% else %}btn-outline-primary{% endif %}">{% if magazine in user.favorites.all %}Unfavorite{% else %}Favorite{% endif %} Magazine ({{ magazine.saved_users.count }})<i class="bi bi-bookmark-heart ps-1"></i></button>
+                        <button class="btn my-2 action-btn {% if magazine in user.magazine_favorites.all %}btn-primary{% else %}btn-outline-primary{% endif %}">{% if magazine in user.magazine_favorites.all %}Unfavorite{% else %}Favorite{% endif %} Magazine ({{ magazine.saved_users.count }})<i class="bi bi-bookmark-heart ps-1"></i></button>
                     {% else %}
                         <a href="/login/" class="btn my-2  btn-outline-primary">Favorite Magazine ({{ magazine.saved_users.count }})<i class="bi bi-bookmark-heart ps-1"></i></a>
                     {% endif %}

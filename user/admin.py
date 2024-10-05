@@ -24,7 +24,7 @@ class CustomUserAdmin(UserAdmin):
             },
         ),
         ("Important dates", {"fields": ("last_login", "date_joined")}),
-        ("Other", {"fields": ("favorites",)})
+        ("Other", {"fields": ("magazine_favorites",)})
     )
     add_fieldsets = (
         (
@@ -40,7 +40,7 @@ class CustomUserAdmin(UserAdmin):
     filter_horizontal = (
         "groups",
         "user_permissions",
-        "favorites",
+        "magazine_favorites",
     )
 
 

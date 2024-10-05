@@ -54,6 +54,14 @@
                 <p class="text-center fw-bold mx-3 mb-0">Or</p>
               </div>
 
+            <!-- First Name input -->
+                <label class="form-label" for="first_name" style="margin-left: 0px;">First name</label>
+                <input name="first_name" value="{{ form.first_name.value }}" id="first_name" class="form-input form-control form-control-lg" placeholder="Enter your first name">
+
+            <!-- Last name input -->
+                <label class="form-label" for="last_name" style="margin-left: 0px;">Last name</label>
+                <input name="last_name" value="{{ form.last_name.value }}" id="last_name" class="form-input form-control form-control-lg" placeholder="Enter your last name">
+
               <!-- Username input -->
                 <label class="form-label" for="username" style="margin-left: 0px;">Username</label>
                 <input name="username" value="{{ form.username.value }}" id="username" class="form-input form-control form-control-lg" placeholder="Enter your username">
